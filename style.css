@@ -2,7 +2,7 @@
    Fonts
    =========================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
- 
+
 /* ===========================================================
    Tokens
    =========================================================== */
@@ -15,23 +15,23 @@
   --blueprint-dark: #1f3f5c;
   --line: #c7d0d8;
   --accent: #b04a2c;
- 
+
   --font-head: 'Space Grotesk', sans-serif;
   --font-body: 'IBM Plex Sans', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
- 
+
   --max-width: 1100px;
 }
- 
+
 /* ===========================================================
    Reset & base
    =========================================================== */
 * { box-sizing: border-box; }
- 
+
 html {
   scroll-behavior: smooth;
 }
- 
+
 body {
   margin: 0;
   background: var(--paper);
@@ -41,37 +41,37 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
- 
+
 h1, h2, h3 {
   font-family: var(--font-head);
   color: var(--ink);
   line-height: 1.15;
   margin: 0 0 0.5em;
 }
- 
+
 h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 600; }
 h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 600; }
 h3 { font-size: 1.1rem; font-weight: 600; }
- 
+
 p { margin: 0 0 1em; max-width: 62ch; }
- 
+
 a {
   color: var(--blueprint);
   text-decoration: none;
 }
 a:hover { color: var(--blueprint-dark); }
- 
+
 :focus-visible {
   outline: 2px solid var(--blueprint);
   outline-offset: 3px;
 }
- 
+
 .wrap {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
- 
+
 .field-label {
   font-family: var(--font-mono);
   font-size: 0.8rem;
@@ -79,12 +79,12 @@ a:hover { color: var(--blueprint-dark); }
   color: var(--blueprint);
   margin: 0 0 0.6em;
 }
- 
+
 section {
   padding: 5rem 0;
   border-bottom: 1px solid var(--line);
 }
- 
+
 /* ===========================================================
    Header
    =========================================================== */
@@ -96,14 +96,14 @@ section {
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
 }
- 
+
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 64px;
 }
- 
+
 .wordmark {
   font-family: var(--font-mono);
   font-weight: 500;
@@ -117,19 +117,19 @@ section {
   font-size: 0.85rem;
 }
 .wordmark:hover { color: var(--ink); border-color: var(--blueprint); }
- 
+
 .nav {
   display: flex;
   gap: 1.75rem;
   flex-wrap: wrap;
 }
- 
+
 .nav a {
   color: var(--ink-soft);
   font-size: 0.95rem;
 }
 .nav a:hover { color: var(--blueprint); }
- 
+
 /* ===========================================================
    Hero
    =========================================================== */
@@ -145,29 +145,29 @@ section {
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
           mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
 }
- 
+
 .hero-inner { padding-bottom: 4rem; }
- 
+
 .hero-role {
   font-family: var(--font-mono);
   color: var(--ink-soft);
   font-size: 1rem;
   margin-bottom: 1.25rem;
 }
- 
+
 .hero-tagline {
   font-size: 1.15rem;
   color: var(--ink-soft);
   max-width: 56ch;
 }
- 
+
 .hero-actions {
   display: flex;
   gap: 1rem;
   margin-top: 2rem;
   flex-wrap: wrap;
 }
- 
+
 .btn {
   display: inline-block;
   padding: 0.75rem 1.5rem;
@@ -176,19 +176,19 @@ section {
   font-size: 0.95rem;
   border: 1px solid var(--ink);
 }
- 
+
 .btn-primary {
   background: var(--ink);
   color: var(--paper);
 }
 .btn-primary:hover { background: var(--blueprint-dark); border-color: var(--blueprint-dark); color: #fff; }
- 
+
 .btn-secondary {
   background: transparent;
   color: var(--ink);
 }
 .btn-secondary:hover { border-color: var(--blueprint); color: var(--blueprint); }
- 
+
 /* Title block strip, echoes an engineering drawing title block */
 .title-block {
   display: grid;
@@ -196,7 +196,7 @@ section {
   border-top: 1px solid var(--ink);
   background: var(--paper);
 }
- 
+
 .tb-cell {
   padding: 0.9rem 1.5rem;
   border-right: 1px solid var(--line);
@@ -205,7 +205,7 @@ section {
   gap: 0.2rem;
 }
 .tb-cell:last-child { border-right: none; }
- 
+
 .tb-key {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -216,7 +216,7 @@ section {
   font-size: 0.85rem;
   color: var(--ink);
 }
- 
+
 /* ===========================================================
    About
    =========================================================== */
@@ -226,7 +226,7 @@ section {
   gap: 3rem;
   align-items: start;
 }
- 
+
 .photo-frame {
   position: relative;
   aspect-ratio: 4 / 5;
@@ -236,7 +236,7 @@ section {
   justify-content: center;
   background: var(--paper-alt);
 }
- 
+
 .photo-frame::before,
 .photo-frame::after {
   content: "";
@@ -247,13 +247,13 @@ section {
 }
 .photo-frame::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
 .photo-frame::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
- 
+
 .photo-placeholder {
   font-family: var(--font-mono);
   font-size: 0.85rem;
   color: var(--ink-soft);
 }
- 
+
 /* ===========================================================
    Skills — bill of materials table
    =========================================================== */
@@ -263,7 +263,7 @@ section {
   margin-top: 1.5rem;
   font-size: 0.95rem;
 }
- 
+
 .bom-table th {
   text-align: left;
   font-family: var(--font-mono);
@@ -273,24 +273,24 @@ section {
   padding: 0.6rem 1rem;
   border-bottom: 1px solid var(--ink);
 }
- 
+
 .bom-table td {
   padding: 0.9rem 1rem;
   border-bottom: 1px solid var(--line);
   vertical-align: top;
 }
- 
+
 .bom-table td:first-child {
   font-family: var(--font-mono);
   color: var(--blueprint);
   width: 3rem;
 }
- 
+
 .bom-table td:nth-child(2) {
   font-weight: 600;
   width: 14rem;
 }
- 
+
 /* ===========================================================
    Projects
    =========================================================== */
@@ -302,14 +302,14 @@ section {
   background: var(--line);
   border: 1px solid var(--line);
 }
- 
+
 .project-card {
   background: var(--paper);
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
 }
- 
+
 .project-head {
   display: flex;
   justify-content: space-between;
@@ -317,7 +317,7 @@ section {
   gap: 0.75rem;
   margin-bottom: 0.6rem;
 }
- 
+
 .status {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -327,9 +327,20 @@ section {
 }
 .status-done { color: var(--blueprint); }
 .status-progress { color: var(--accent); }
- 
+
 .project-card p { font-size: 0.95rem; color: var(--ink-soft); }
- 
+
+.project-grid-single { grid-template-columns: 1fr; }
+
+.project-points {
+  margin: 0 0 1rem;
+  padding-left: 1.1rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+.project-points li { margin-bottom: 0.6rem; max-width: 68ch; }
+.project-points li:last-child { margin-bottom: 0; }
+
 .project-meta {
   margin: 0.75rem 0 1rem;
   display: grid;
@@ -343,13 +354,13 @@ section {
   min-width: 3.5rem;
 }
 .project-meta dd { margin: 0; color: var(--ink); }
- 
+
 .project-link {
   margin-top: auto;
   font-weight: 600;
   font-size: 0.9rem;
 }
- 
+
 /* ===========================================================
    Education — timeline
    =========================================================== */
@@ -359,13 +370,13 @@ section {
   padding: 0;
   border-left: 2px solid var(--line);
 }
- 
+
 .timeline li {
   position: relative;
   padding: 0 0 2.25rem 1.75rem;
 }
 .timeline li:last-child { padding-bottom: 0; }
- 
+
 .timeline li::before {
   content: "";
   position: absolute;
@@ -377,7 +388,7 @@ section {
   border: 2px solid var(--blueprint);
   border-radius: 50%;
 }
- 
+
 .timeline-date {
   display: block;
   font-family: var(--font-mono);
@@ -385,14 +396,14 @@ section {
   color: var(--blueprint);
   margin-bottom: 0.3rem;
 }
- 
+
 .timeline p { color: var(--ink-soft); font-size: 0.95rem; }
- 
+
 /* ===========================================================
    Contact
    =========================================================== */
 .contact { border-bottom: none; }
- 
+
 .contact-links {
   display: flex;
   gap: 1.75rem;
@@ -401,14 +412,14 @@ section {
   font-family: var(--font-mono);
   font-size: 0.95rem;
 }
- 
+
 /* ===========================================================
    Footer
    =========================================================== */
 .site-footer {
   padding: 1.5rem 0 2.5rem;
 }
- 
+
 .footer-inner {
   display: flex;
   justify-content: space-between;
@@ -418,7 +429,7 @@ section {
   font-size: 0.78rem;
   color: var(--ink-soft);
 }
- 
+
 /* ===========================================================
    Responsive
    =========================================================== */
@@ -429,8 +440,7 @@ section {
   .tb-cell:nth-child(2) { border-right: none; }
   section { padding: 3.5rem 0; }
 }
- 
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
- 

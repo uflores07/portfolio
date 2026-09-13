@@ -3,53 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Name — Engineering Portfolio</title>
+<title>Guillermo Flores — Engineering Portfolio</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
- 
+
 <header class="site-header">
   <div class="wrap header-inner">
-    <a href="#top" class="wordmark">YN</a>
+    <a href="#top" class="wordmark">GF</a>
     <nav class="nav">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
-      <a href="#education">Education</a>
+      <a href="#education">Background</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
- 
+
 <main>
- 
+
   <!-- ============ HERO ============ -->
   <section class="hero" id="top">
     <div class="wrap hero-inner">
       <p class="field-label">Portfolio</p>
-      <!-- EDIT: your name -->
-      <h1>Your Name</h1>
-      <!-- EDIT: your discipline / focus -->
-      <p class="hero-role">Mechanical Engineering Student &middot; Class of 2027</p>
-      <!-- EDIT: one or two sentence tagline about what you build or study -->
-      <p class="hero-tagline">I design and build things that move — from small robotics
-        prototypes to full CAD assemblies. Currently focused on control systems and
-        manufacturing.</p>
+      <h1>Guillermo Flores</h1>
+      <p class="hero-role">Electronics Engineering Student &middot; Simon Fraser University</p>
+      <p class="hero-tagline">I like turning ideas into working hardware — from CAD models
+        and stress analysis to motor-driven mechanisms and the circuits and code that run
+        them.</p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary">View projects</a>
-        <!-- EDIT: link to your resume PDF -->
         <a href="resume.pdf" class="btn btn-secondary">Download resume</a>
       </div>
     </div>
- 
+
     <div class="title-block wrap">
       <div class="tb-cell">
         <span class="tb-key">Name</span>
-        <span class="tb-value">Your Name</span>
+        <span class="tb-value">Guillermo Flores</span>
       </div>
       <div class="tb-cell">
         <span class="tb-key">Discipline</span>
-        <span class="tb-value">Mechanical Eng.</span>
+        <span class="tb-value">Electronics Eng.</span>
       </div>
       <div class="tb-cell">
         <span class="tb-key">Sheet</span>
@@ -61,7 +57,7 @@
       </div>
     </div>
   </section>
- 
+
   <!-- ============ ABOUT ============ -->
   <section class="about" id="about">
     <div class="wrap about-inner">
@@ -74,23 +70,25 @@
       <div class="about-copy">
         <p class="field-label">About</p>
         <h2>A little about me</h2>
-        <!-- EDIT: your bio -->
-        <p>I'm a third-year engineering student who likes taking ideas from a napkin
-          sketch to a working prototype. Most of my time goes into hands-on project
-          work — CAD modeling, prototyping, and testing — alongside coursework in
-          mechanics, thermodynamics, and controls.</p>
-        <p>Outside of class, I'm usually in the makerspace, on a project team, or
-          picking apart something to see how it works.</p>
+        <p>I'm an Electronics Engineering student at Simon Fraser University with
+          hands-on experience across mechanical design, prototyping, and circuit
+          integration. My most recent project involved leading the mechanical design
+          of an automated measuring cup — CAD modeling, stress analysis, and a
+          motor-driven dispensing mechanism built and tested with an 8-person team.</p>
+        <p>Outside of coursework, I work as a cook and have spent a summer landscaping,
+          both of which have sharpened how I handle pressure, manage time, and work
+          as part of a team. I'm also active in my community through volunteer work
+          with my church and local outreach initiatives.</p>
       </div>
     </div>
   </section>
- 
+
   <!-- ============ SKILLS ============ -->
   <section class="skills" id="skills">
     <div class="wrap">
       <p class="field-label">Skills</p>
       <h2>Bill of materials</h2>
- 
+
       <table class="bom-table">
         <thead>
           <tr>
@@ -100,146 +98,124 @@
           </tr>
         </thead>
         <tbody>
-          <!-- EDIT: swap in your own categories and tools -->
           <tr>
             <td>01</td>
-            <td>Design &amp; CAD</td>
-            <td>SolidWorks, Fusion 360, AutoCAD</td>
+            <td>Programming &amp; Software</td>
+            <td>C++, MATLAB, Python, MS Excel / Office</td>
           </tr>
           <tr>
             <td>02</td>
-            <td>Programming</td>
-            <td>Python, MATLAB, C++</td>
+            <td>Engineering &amp; Design</td>
+            <td>SolidWorks, Prototyping, Electrical Circuit Integration</td>
           </tr>
           <tr>
             <td>03</td>
-            <td>Fabrication</td>
-            <td>3D printing, CNC milling, laser cutting, welding</td>
-          </tr>
-          <tr>
-            <td>04</td>
-            <td>Analysis</td>
-            <td>FEA (ANSYS), circuit simulation, statistics</td>
-          </tr>
-          <tr>
-            <td>05</td>
-            <td>Other</td>
-            <td>Technical writing, Git, Arduino/embedded systems</td>
+            <td>Lab &amp; Fabrication</td>
+            <td>Component Fitment &amp; Assembly, Iterative Bench Testing, Volumetric Testing</td>
           </tr>
         </tbody>
       </table>
     </div>
   </section>
- 
+
   <!-- ============ PROJECTS ============ -->
   <section class="projects" id="projects">
     <div class="wrap">
       <p class="field-label">Projects</p>
       <h2>Selected work</h2>
- 
-      <div class="project-grid">
- 
-        <!-- EDIT: project 1 -->
+
+      <div class="project-grid project-grid-single">
+
         <article class="project-card">
           <header class="project-head">
-            <h3>Autonomous Line-Following Robot</h3>
-            <span class="status status-done">Completed</span>
+            <h3>Automated Measuring Cup</h3>
+            <span class="status status-done">Completed &middot; Sep–Dec 2025</span>
           </header>
-          <p>Built a two-wheeled robot that follows a track using IR sensors and a
-            closed-loop PID controller, tuned for speed on tight corners.</p>
+          <ul class="project-points">
+            <li>Led the mechanical design of an automated measuring cup, performing
+              CAD modeling and stress analysis to ensure structural integrity and
+              precise component fitment across an 8-member team.</li>
+            <li>Designed, prototyped, and tested a custom motor-driven dispensing
+              mechanism using rapid prototyping and iterative bench testing, meeting
+              targeted volumetric tolerances.</li>
+            <li>Integrated mechanical subsystems with electrical circuits and software
+              control algorithms through cross-functional collaboration, delivering a
+              fully functional prototype on schedule.</li>
+          </ul>
           <dl class="project-meta">
-            <div><dt>Stack</dt><dd>Arduino, C++, PID control</dd></div>
-            <div><dt>Role</dt><dd>Solo project</dd></div>
+            <div><dt>Stack</dt><dd>SolidWorks, CAD stress analysis, electrical circuit integration</dd></div>
+            <div><dt>Role</dt><dd>Mechanical design lead, 8-member team</dd></div>
           </dl>
-          <a href="#" class="project-link">View writeup &rsaquo;</a>
         </article>
- 
-        <!-- EDIT: project 2 -->
-        <article class="project-card">
-          <header class="project-head">
-            <h3>Formula SAE Suspension Redesign</h3>
-            <span class="status status-progress">In progress</span>
-          </header>
-          <p>Redesigning the front suspension geometry for the team's next chassis,
-            focused on reducing unsprung mass and improving camber gain.</p>
-          <dl class="project-meta">
-            <div><dt>Stack</dt><dd>SolidWorks, ANSYS FEA</dd></div>
-            <div><dt>Role</dt><dd>Suspension sub-team, 4 members</dd></div>
-          </dl>
-          <a href="#" class="project-link">View writeup &rsaquo;</a>
-        </article>
- 
-        <!-- EDIT: project 3 -->
-        <article class="project-card">
-          <header class="project-head">
-            <h3>3D-Printed Prosthetic Hand</h3>
-            <span class="status status-done">Completed</span>
-          </header>
-          <p>Designed a low-cost, cable-driven prosthetic hand for a university
-            capstone, prioritizing print-in-place parts and easy assembly.</p>
-          <dl class="project-meta">
-            <div><dt>Stack</dt><dd>Fusion 360, 3D printing</dd></div>
-            <div><dt>Role</dt><dd>Capstone team, 3 members</dd></div>
-          </dl>
-          <a href="#" class="project-link">View writeup &rsaquo;</a>
-        </article>
- 
+
       </div>
     </div>
   </section>
- 
+
   <!-- ============ EDUCATION ============ -->
   <section class="education" id="education">
     <div class="wrap">
-      <p class="field-label">Education</p>
+      <p class="field-label">Background</p>
       <h2>Timeline</h2>
- 
+
       <ol class="timeline">
-        <!-- EDIT: your education / experience entries -->
         <li>
-          <span class="timeline-date">2023 &ndash; Present</span>
-          <h3>B.Eng. in Mechanical Engineering</h3>
-          <p>Your University &middot; GPA 3.8 &middot; Relevant coursework: Dynamics,
-            Thermodynamics, Controls, Manufacturing Processes</p>
+          <span class="timeline-date">Sept 2026 &ndash; Current</span>
+          <h3>B.A.Sc. in Electronics Engineering</h3>
+          <p>Simon Fraser University &middot; GPA 3.6/4.33 &middot; Dean's Honor Roll</p>
         </li>
         <li>
-          <span class="timeline-date">Summer 2025</span>
-          <h3>Engineering Intern</h3>
-          <p>Company Name &middot; Supported design and testing on a small products
-            team</p>
+          <span class="timeline-date">Jan 2026 &ndash; Current</span>
+          <h3>Outreach and Service Team</h3>
+          <p>The Knights of Columbus, Coquitlam, BC &middot; Organize charitable
+            events and allocate financial support for community initiatives</p>
         </li>
         <li>
-          <span class="timeline-date">2023</span>
-          <h3>High School Diploma</h3>
-          <p>Your High School &middot; Captain, Robotics Team</p>
+          <span class="timeline-date">June 2025 &ndash; Aug 2025</span>
+          <h3>Landscaper</h3>
+          <p>Koru Landscaping, Coquitlam, BC &middot; Executed residential and
+            commercial landscaping projects, operating and servicing commercial
+            machinery</p>
+        </li>
+        <li>
+          <span class="timeline-date">April 2023 &ndash; Current</span>
+          <h3>Cook</h3>
+          <p>Green Tee Country Club, Westwood Plateau, Coquitlam, BC &middot;
+            Prepared banquet and &agrave; la carte meals under tight time constraints
+            during high-volume service</p>
+        </li>
+        <li>
+          <span class="timeline-date">April 2012 &ndash; Current</span>
+          <h3>Altar Serving</h3>
+          <p>All Saints Parish, Coquitlam, BC &middot; Trained new servers and
+            coordinated operations during liturgical services</p>
         </li>
       </ol>
     </div>
   </section>
- 
+
   <!-- ============ CONTACT ============ -->
   <section class="contact" id="contact">
     <div class="wrap contact-inner">
       <p class="field-label">Contact</p>
       <h2>Let's talk</h2>
-      <p>Open to internships, co-ops, and project collaborations.</p>
+      <p>Open to internships, co-ops, and project collaborations. Based in
+        Coquitlam, BC.</p>
       <div class="contact-links">
-        <!-- EDIT: your real contact links -->
-        <a href="mailto:your.email@example.com">your.email@example.com</a>
-        <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:guf@sfu.ca">guf@sfu.ca</a>
+        <a href="https://www.linkedin.com/in/-guf" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </section>
- 
+
 </main>
- 
+
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <span>&copy; 2026 Your Name</span>
+    <span>&copy; 2026 Guillermo Flores</span>
     <span>Sheet 01 of 01 &middot; End of document</span>
   </div>
 </footer>
- 
+
 </body>
 </html>
