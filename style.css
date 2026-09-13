@@ -137,6 +137,14 @@ section {
   position: relative;
   padding-top: 5rem;
   padding-bottom: 0;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   background-image:
     linear-gradient(var(--line) 1px, transparent 1px),
     linear-gradient(90deg, var(--line) 1px, transparent 1px);
@@ -144,9 +152,14 @@ section {
   background-position: center top;
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
           mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  pointer-events: none;
 }
 
-.hero-inner { padding-bottom: 3rem; }
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 3rem;
+}
 
 .hero-role {
   font-family: var(--font-mono);
@@ -227,20 +240,28 @@ section {
 }
 
 /* ===========================================================
-   Skills — flat lists
+   Skills — clean grids
    =========================================================== */
-.skill-list {
+.skill-grid {
   list-style: none;
   margin: 1.5rem 0 0;
   padding: 0;
-  border-top: 1px solid var(--ink);
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
 }
 
-.skill-list li {
-  padding: 0.85rem 0.25rem;
-  border-bottom: 1px solid var(--line);
-  font-size: 0.98rem;
+.skill-grid li {
+  background: var(--paper);
+  padding: 1.1rem 1.25rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
 }
+
+.skill-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.skill-grid-2 { grid-template-columns: repeat(2, 1fr); }
 
 .skills-second-title {
   margin-top: 3rem;
@@ -343,7 +364,20 @@ section {
 
 .log-body { flex: 1 1 260px; }
 .log-body h3 { margin-bottom: 0.25rem; }
-.log-body p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+
+.log-org {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--blueprint);
+}
+
+.log-desc {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  max-width: 60ch;
+}
 
 /* ===========================================================
    Contact
@@ -384,6 +418,11 @@ section {
   .photo-frame { max-width: 220px; }
   section { padding: 3.5rem 0; }
   .log-date { min-width: 100%; }
+  .skill-grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 460px) {
+  .skill-grid-3, .skill-grid-2 { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
