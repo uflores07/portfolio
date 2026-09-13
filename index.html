@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Engineering Portfolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#top" class="wordmark">YN</a>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+ 
+<main>
+ 
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="wrap hero-inner">
+      <p class="field-label">Portfolio</p>
+      <!-- EDIT: your name -->
+      <h1>Your Name</h1>
+      <!-- EDIT: your discipline / focus -->
+      <p class="hero-role">Mechanical Engineering Student &middot; Class of 2027</p>
+      <!-- EDIT: one or two sentence tagline about what you build or study -->
+      <p class="hero-tagline">I design and build things that move — from small robotics
+        prototypes to full CAD assemblies. Currently focused on control systems and
+        manufacturing.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View projects</a>
+        <!-- EDIT: link to your resume PDF -->
+        <a href="resume.pdf" class="btn btn-secondary">Download resume</a>
+      </div>
+    </div>
+ 
+    <div class="title-block wrap">
+      <div class="tb-cell">
+        <span class="tb-key">Name</span>
+        <span class="tb-value">Your Name</span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-key">Discipline</span>
+        <span class="tb-value">Mechanical Eng.</span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-key">Sheet</span>
+        <span class="tb-value">01 of 01</span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-key">Rev.</span>
+        <span class="tb-value">2026</span>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ============ ABOUT ============ -->
+  <section class="about" id="about">
+    <div class="wrap about-inner">
+      <div class="about-photo">
+        <div class="photo-frame">
+          <!-- EDIT: replace with <img src="your-photo.jpg" alt="Your Name"> -->
+          <span class="photo-placeholder">Photo</span>
+        </div>
+      </div>
+      <div class="about-copy">
+        <p class="field-label">About</p>
+        <h2>A little about me</h2>
+        <!-- EDIT: your bio -->
+        <p>I'm a third-year engineering student who likes taking ideas from a napkin
+          sketch to a working prototype. Most of my time goes into hands-on project
+          work — CAD modeling, prototyping, and testing — alongside coursework in
+          mechanics, thermodynamics, and controls.</p>
+        <p>Outside of class, I'm usually in the makerspace, on a project team, or
+          picking apart something to see how it works.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ============ SKILLS ============ -->
+  <section class="skills" id="skills">
+    <div class="wrap">
+      <p class="field-label">Skills</p>
+      <h2>Bill of materials</h2>
+ 
+      <table class="bom-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Tools &amp; methods</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- EDIT: swap in your own categories and tools -->
+          <tr>
+            <td>01</td>
+            <td>Design &amp; CAD</td>
+            <td>SolidWorks, Fusion 360, AutoCAD</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>Programming</td>
+            <td>Python, MATLAB, C++</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>Fabrication</td>
+            <td>3D printing, CNC milling, laser cutting, welding</td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>Analysis</td>
+            <td>FEA (ANSYS), circuit simulation, statistics</td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td>Other</td>
+            <td>Technical writing, Git, Arduino/embedded systems</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+ 
+  <!-- ============ PROJECTS ============ -->
+  <section class="projects" id="projects">
+    <div class="wrap">
+      <p class="field-label">Projects</p>
+      <h2>Selected work</h2>
+ 
+      <div class="project-grid">
+ 
+        <!-- EDIT: project 1 -->
+        <article class="project-card">
+          <header class="project-head">
+            <h3>Autonomous Line-Following Robot</h3>
+            <span class="status status-done">Completed</span>
+          </header>
+          <p>Built a two-wheeled robot that follows a track using IR sensors and a
+            closed-loop PID controller, tuned for speed on tight corners.</p>
+          <dl class="project-meta">
+            <div><dt>Stack</dt><dd>Arduino, C++, PID control</dd></div>
+            <div><dt>Role</dt><dd>Solo project</dd></div>
+          </dl>
+          <a href="#" class="project-link">View writeup &rsaquo;</a>
+        </article>
+ 
+        <!-- EDIT: project 2 -->
+        <article class="project-card">
+          <header class="project-head">
+            <h3>Formula SAE Suspension Redesign</h3>
+            <span class="status status-progress">In progress</span>
+          </header>
+          <p>Redesigning the front suspension geometry for the team's next chassis,
+            focused on reducing unsprung mass and improving camber gain.</p>
+          <dl class="project-meta">
+            <div><dt>Stack</dt><dd>SolidWorks, ANSYS FEA</dd></div>
+            <div><dt>Role</dt><dd>Suspension sub-team, 4 members</dd></div>
+          </dl>
+          <a href="#" class="project-link">View writeup &rsaquo;</a>
+        </article>
+ 
+        <!-- EDIT: project 3 -->
+        <article class="project-card">
+          <header class="project-head">
+            <h3>3D-Printed Prosthetic Hand</h3>
+            <span class="status status-done">Completed</span>
+          </header>
+          <p>Designed a low-cost, cable-driven prosthetic hand for a university
+            capstone, prioritizing print-in-place parts and easy assembly.</p>
+          <dl class="project-meta">
+            <div><dt>Stack</dt><dd>Fusion 360, 3D printing</dd></div>
+            <div><dt>Role</dt><dd>Capstone team, 3 members</dd></div>
+          </dl>
+          <a href="#" class="project-link">View writeup &rsaquo;</a>
+        </article>
+ 
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ============ EDUCATION ============ -->
+  <section class="education" id="education">
+    <div class="wrap">
+      <p class="field-label">Education</p>
+      <h2>Timeline</h2>
+ 
+      <ol class="timeline">
+        <!-- EDIT: your education / experience entries -->
+        <li>
+          <span class="timeline-date">2023 &ndash; Present</span>
+          <h3>B.Eng. in Mechanical Engineering</h3>
+          <p>Your University &middot; GPA 3.8 &middot; Relevant coursework: Dynamics,
+            Thermodynamics, Controls, Manufacturing Processes</p>
+        </li>
+        <li>
+          <span class="timeline-date">Summer 2025</span>
+          <h3>Engineering Intern</h3>
+          <p>Company Name &middot; Supported design and testing on a small products
+            team</p>
+        </li>
+        <li>
+          <span class="timeline-date">2023</span>
+          <h3>High School Diploma</h3>
+          <p>Your High School &middot; Captain, Robotics Team</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+ 
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-inner">
+      <p class="field-label">Contact</p>
+      <h2>Let's talk</h2>
+      <p>Open to internships, co-ops, and project collaborations.</p>
+      <div class="contact-links">
+        <!-- EDIT: your real contact links -->
+        <a href="mailto:your.email@example.com">your.email@example.com</a>
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+ 
+</main>
+ 
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>&copy; 2026 Your Name</span>
+    <span>Sheet 01 of 01 &middot; End of document</span>
+  </div>
+</footer>
+ 
+</body>
+</html>
