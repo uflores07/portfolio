@@ -50,7 +50,7 @@ h1, h2, h3 {
 }
 
 h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 600; }
-h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 600; }
+h2 { font-size: clamp(1.85rem, 3vw, 2.35rem); font-weight: 600; }
 h3 { font-size: 1.1rem; font-weight: 600; }
 
 p { margin: 0 0 1em; max-width: 62ch; }
@@ -146,7 +146,7 @@ section {
           mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
 }
 
-.hero-inner { padding-bottom: 4rem; }
+.hero-inner { padding-bottom: 3rem; }
 
 .hero-role {
   font-family: var(--font-mono);
@@ -189,34 +189,6 @@ section {
 }
 .btn-secondary:hover { border-color: var(--blueprint); color: var(--blueprint); }
 
-/* Title block strip, echoes an engineering drawing title block */
-.title-block {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--ink);
-  background: var(--paper);
-}
-
-.tb-cell {
-  padding: 0.9rem 1.5rem;
-  border-right: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-.tb-cell:last-child { border-right: none; }
-
-.tb-key {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--ink-soft);
-}
-.tb-value {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--ink);
-}
-
 /* ===========================================================
    About
    =========================================================== */
@@ -255,40 +227,23 @@ section {
 }
 
 /* ===========================================================
-   Skills — bill of materials table
+   Skills — flat lists
    =========================================================== */
-.bom-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1.5rem;
-  font-size: 0.95rem;
+.skill-list {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--ink);
 }
 
-.bom-table th {
-  text-align: left;
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: 0.78rem;
-  color: var(--ink-soft);
-  padding: 0.6rem 1rem;
-  border-bottom: 1px solid var(--ink);
-}
-
-.bom-table td {
-  padding: 0.9rem 1rem;
+.skill-list li {
+  padding: 0.85rem 0.25rem;
   border-bottom: 1px solid var(--line);
-  vertical-align: top;
+  font-size: 0.98rem;
 }
 
-.bom-table td:first-child {
-  font-family: var(--font-mono);
-  color: var(--blueprint);
-  width: 3rem;
-}
-
-.bom-table td:nth-child(2) {
-  font-weight: 600;
-  width: 14rem;
+.skills-second-title {
+  margin-top: 3rem;
 }
 
 /* ===========================================================
@@ -362,42 +317,33 @@ section {
 }
 
 /* ===========================================================
-   Education — timeline
+   Work & Volunteer Experience — log list
    =========================================================== */
-.timeline {
-  list-style: none;
-  margin: 1.5rem 0 0;
-  padding: 0;
-  border-left: 2px solid var(--line);
+.log-list {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--ink);
 }
 
-.timeline li {
-  position: relative;
-  padding: 0 0 2.25rem 1.75rem;
-}
-.timeline li:last-child { padding-bottom: 0; }
-
-.timeline li::before {
-  content: "";
-  position: absolute;
-  left: -6px;
-  top: 0.4rem;
-  width: 10px;
-  height: 10px;
-  background: var(--paper);
-  border: 2px solid var(--blueprint);
-  border-radius: 50%;
+.log-entry {
+  display: flex;
+  gap: 2rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
 }
 
-.timeline-date {
-  display: block;
+.log-date {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--blueprint);
-  margin-bottom: 0.3rem;
+  flex: 0 0 auto;
+  min-width: 9rem;
+  padding-top: 0.15rem;
 }
 
-.timeline p { color: var(--ink-soft); font-size: 0.95rem; }
+.log-body { flex: 1 1 260px; }
+.log-body h3 { margin-bottom: 0.25rem; }
+.log-body p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
 
 /* ===========================================================
    Contact
@@ -436,9 +382,8 @@ section {
 @media (max-width: 720px) {
   .about-inner { grid-template-columns: 1fr; }
   .photo-frame { max-width: 220px; }
-  .title-block { grid-template-columns: repeat(2, 1fr); }
-  .tb-cell:nth-child(2) { border-right: none; }
   section { padding: 3.5rem 0; }
+  .log-date { min-width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
