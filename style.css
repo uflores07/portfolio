@@ -22,6 +22,8 @@
   --font-mono: 'IBM Plex Mono', monospace;
 
   --max-width: 1100px;
+  --grid-shift-x: 0px;
+  --grid-shift-y: 0px;
 }
 
 /* ===========================================================
@@ -41,6 +43,72 @@ body {
   font-size: 1rem;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position:
+    calc(50% + var(--grid-shift-x)) calc(0% + var(--grid-shift-y));
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ===========================================================
+   Blueprint chrome — corner marks, progress ruler, coord HUD
+   =========================================================== */
+.crop-marks { position: fixed; inset: 0; z-index: 30; pointer-events: none; }
+
+.crop { position: fixed; width: 16px; height: 16px; opacity: 0.55; }
+.crop::before,
+.crop::after { content: ""; position: absolute; background: var(--blueprint); }
+.crop::before { width: 100%; height: 1px; top: 50%; }
+.crop::after  { height: 100%; width: 1px; left: 50%; }
+.crop-tl { top: 14px; left: 14px; }
+.crop-tr { top: 14px; right: 14px; }
+.crop-bl { bottom: 14px; left: 14px; }
+.crop-br { bottom: 14px; right: 14px; }
+
+.progress-ruler {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--line);
+  z-index: 40;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--blueprint);
+  transition: width 0.1s linear;
+}
+
+.coord-hud {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 25;
+  display: flex;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  background: rgba(244, 245, 242, 0.85);
+  border: 1px solid var(--line);
+  padding: 0.35rem 0.65rem;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width: 720px) {
+  .crop-marks, .coord-hud { display: none; }
 }
 
 h1, h2, h3 {
@@ -81,13 +149,55 @@ a:hover { color: var(--blueprint-dark); }
   margin: 0 0 0.6em;
 }
 
+.field-label::before {
+  content: "SHEET " counter(sheet, decimal-leading-zero) " \2014  ";
+  color: var(--ink-soft);
+}
+
+main {
+  counter-reset: sheet -1;
+}
+
 section {
   padding: 5rem 0;
-  border-bottom: 1px solid var(--line);
+  border-bottom: none;
+  position: relative;
+  counter-increment: sheet;
 }
+
+/* dimension-line ruler between sheets */
+section::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 10px;
+  background-image:
+    repeating-linear-gradient(to right, var(--ink-soft) 0 1px, transparent 1px 50px),
+    repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px 10px);
+  background-position: left bottom, left bottom;
+  background-size: 100% 10px, 100% 6px;
+  background-repeat: repeat-x;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.contact::after { content: none; }
 
 main > section:nth-of-type(even) {
   background: var(--paper-blue);
+}
+
+/* ===========================================================
+   Scroll reveal (progressive enhancement — see script.js)
+   =========================================================== */
+:root.js section[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+:root.js section[data-reveal].in-view {
+  opacity: 1;
+  transform: none;
 }
 
 /* ===========================================================
@@ -130,10 +240,25 @@ main > section:nth-of-type(even) {
 }
 
 .nav a {
+  position: relative;
   color: var(--ink-soft);
   font-size: 0.95rem;
 }
 .nav a:hover { color: var(--blueprint); }
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 2px;
+  background: var(--blueprint);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.nav a:hover::after { transform: scaleX(1); }
+.nav a.active { color: var(--blueprint-dark); }
+.nav a.active::after { transform: scaleX(1); }
 
 /* ===========================================================
    Hero
@@ -166,6 +291,15 @@ main > section:nth-of-type(even) {
   padding-bottom: 3rem;
 }
 
+.hero h1 {
+  clip-path: inset(0 100% 0 0);
+  animation: hero-wipe 0.9s 0.15s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes hero-wipe {
+  to { clip-path: inset(0 0 0 0); }
+}
+
 .hero-role {
   font-family: var(--font-mono);
   color: var(--ink-soft);
@@ -187,13 +321,28 @@ main > section:nth-of-type(even) {
 }
 
 .btn {
+  position: relative;
   display: inline-block;
   padding: 0.75rem 1.5rem;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.95rem;
   border: 1px solid var(--ink);
+  transition: transform 0.2s ease;
 }
+.btn:hover { transform: translateY(-2px); }
+
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 1px solid var(--blueprint);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+.btn:hover::before { transform: scaleX(1); }
 
 .btn-primary {
   background: var(--ink);
@@ -258,12 +407,32 @@ main > section:nth-of-type(even) {
 }
 
 .skill-grid li {
+  position: relative;
   background: var(--paper);
   padding: 1.1rem 1.25rem;
   font-size: 0.95rem;
   display: flex;
   align-items: center;
+  transition: background 0.25s ease, color 0.25s ease, padding-left 0.25s ease;
 }
+
+.skill-grid li::after {
+  content: "";
+  position: absolute;
+  left: 1.25rem; right: 1.25rem; bottom: 0.55rem;
+  height: 1px;
+  background: var(--blueprint);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+.skill-grid li:hover {
+  background: var(--paper-blue);
+  color: var(--blueprint-dark);
+  padding-left: 1.6rem;
+}
+.skill-grid li:hover::after { transform: scaleX(1); }
 
 .skill-grid-3 { grid-template-columns: repeat(3, 1fr); }
 .skill-grid-2 { grid-template-columns: repeat(2, 1fr); }
@@ -285,11 +454,33 @@ main > section:nth-of-type(even) {
 }
 
 .project-card {
+  position: relative;
   background: var(--paper);
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.project-card::before,
+.project-card::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--blueprint);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.project-card::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.project-card::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 28px -18px rgba(31, 63, 92, 0.45);
+}
+.project-card:hover::before,
+.project-card:hover::after { opacity: 1; }
 
 .project-head {
   display: flex;
@@ -434,6 +625,29 @@ main > section:nth-of-type(even) {
   color: var(--ink-soft);
 }
 
+.title-block {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.tb-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  border-left: 1px solid var(--line);
+  padding-left: 0.75rem;
+}
+.tb-cell:first-child { border-left: none; padding-left: 0; }
+
+.tb-label { text-transform: uppercase; letter-spacing: 0.05em; }
+.tb-value { color: var(--ink); font-weight: 500; }
+
+@media (max-width: 560px) {
+  .title-block { grid-template-columns: repeat(2, auto); row-gap: 0.75rem; }
+}
+
 /* ===========================================================
    Responsive
    =========================================================== */
@@ -451,4 +665,9 @@ main > section:nth-of-type(even) {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -8,6 +8,20 @@
 </head>
 <body>
 
+<div class="crop-marks" aria-hidden="true">
+  <span class="crop crop-tl"></span>
+  <span class="crop crop-tr"></span>
+  <span class="crop crop-bl"></span>
+  <span class="crop crop-br"></span>
+</div>
+
+<div class="progress-ruler" aria-hidden="true"><div class="progress-fill"></div></div>
+
+<div class="coord-hud" aria-hidden="true">
+  <span class="coord-x">X 0000</span>
+  <span class="coord-y">Y 0000</span>
+</div>
+
 <header class="site-header">
   <div class="wrap header-inner">
     <a href="#top" class="wordmark">GF</a>
@@ -26,7 +40,7 @@
 <main>
 
   <!-- ============ HERO ============ -->
-  <section class="hero" id="top">
+  <section class="hero" id="top" data-reveal>
     <div class="wrap hero-inner">
       <p class="field-label">Portfolio</p>
       <h1>Guillermo Flores</h1>
@@ -42,7 +56,7 @@
   </section>
 
   <!-- ============ ABOUT ============ -->
-  <section class="about" id="about">
+  <section class="about" id="about" data-reveal>
     <div class="wrap about-inner">
       <div class="about-photo">
         <div class="photo-frame">
@@ -67,7 +81,7 @@
   </section>
 
   <!-- ============ SKILLS ============ -->
-  <section class="skills" id="skills">
+  <section class="skills" id="skills" data-reveal>
     <div class="wrap">
       <p class="field-label">Skills</p>
       <h2>Technical Skills</h2>
@@ -99,7 +113,7 @@
   </section>
 
   <!-- ============ PROJECTS ============ -->
-  <section class="projects" id="projects">
+  <section class="projects" id="projects" data-reveal>
     <div class="wrap">
       <p class="field-label">Projects</p>
       <h2>Selected work</h2>
@@ -133,7 +147,7 @@
   </section>
 
   <!-- ============ WORK EXPERIENCE ============ -->
-  <section class="work-experience" id="work-experience">
+  <section class="work-experience" id="work-experience" data-reveal>
     <div class="wrap">
       <p class="field-label">Experience</p>
       <h2>Work Experience</h2>
@@ -165,7 +179,7 @@
   </section>
 
   <!-- ============ VOLUNTEER EXPERIENCE ============ -->
-  <section class="volunteer-experience" id="volunteer-experience">
+  <section class="volunteer-experience" id="volunteer-experience" data-reveal>
     <div class="wrap">
       <p class="field-label">Community</p>
       <h2>Volunteer Experience</h2>
@@ -195,7 +209,7 @@
   </section>
 
   <!-- ============ INTERESTS ============ -->
-  <section class="interests" id="interests">
+  <section class="interests" id="interests" data-reveal>
     <div class="wrap">
       <p class="field-label">Interests</p>
       <h2>Outside of class</h2>
@@ -212,7 +226,7 @@
   </section>
 
   <!-- ============ CONTACT ============ -->
-  <section class="contact" id="contact">
+  <section class="contact" id="contact" data-reveal>
     <div class="wrap contact-inner">
       <p class="field-label">Contact</p>
       <h2>Let's talk</h2>
@@ -228,10 +242,15 @@
 </main>
 
 <footer class="site-footer">
-  <div class="wrap footer-inner">
-    <span>&copy; 2026 Guillermo Flores</span>
+  <div class="wrap footer-inner title-block">
+    <div class="tb-cell"><span class="tb-label">Drawn by</span><span class="tb-value">G. Flores</span></div>
+    <div class="tb-cell"><span class="tb-label">Sheet</span><span class="tb-value">08 of 08</span></div>
+    <div class="tb-cell"><span class="tb-label">Rev</span><span class="tb-value">2026.09</span></div>
+    <div class="tb-cell"><span class="tb-label">Scale</span><span class="tb-value">NTS</span></div>
+    <div class="tb-cell"><span class="tb-label">&copy;</span><span class="tb-value">2026</span></div>
   </div>
 </footer>
 
+<script src="script.js" defer></script>
 </body>
 </html>
