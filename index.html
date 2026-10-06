@@ -8,25 +8,14 @@
 </head>
 <body>
 
-<div class="crop-marks" aria-hidden="true">
-  <span class="crop crop-tl"></span>
-  <span class="crop crop-tr"></span>
-  <span class="crop crop-bl"></span>
-  <span class="crop crop-br"></span>
-</div>
-
-<div class="progress-ruler" aria-hidden="true"><div class="progress-fill"></div></div>
-
-<div class="coord-hud" aria-hidden="true">
-  <span class="coord-x">X 0000</span>
-  <span class="coord-y">Y 0000</span>
-</div>
+<div class="progress-bar" aria-hidden="true"><div class="progress-fill"></div></div>
 
 <header class="site-header">
   <div class="wrap header-inner">
-    <a href="#top" class="wordmark">GF</a>
+    <a href="#top" class="wordmark" aria-label="Back to top">GF</a>
     <nav class="nav">
       <a href="#about">About</a>
+      <a href="#education">Education</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#work-experience">Experience</a>
@@ -40,19 +29,22 @@
 <main>
 
   <!-- ============ HERO ============ -->
-  <section class="hero" id="top" data-reveal>
+  <section class="hero" id="top">
+    <canvas class="circuit-bg" aria-hidden="true"></canvas>
+    <div class="hero-vignette" aria-hidden="true"></div>
     <div class="wrap hero-inner">
-      <p class="field-label">Portfolio</p>
+      <p class="boot-line" aria-hidden="true"><span class="boot-text">&gt; boot gf_portfolio.bin ...</span><span class="boot-caret"></span> <span class="boot-ok">[ OK ]</span></p>
       <h1>Guillermo Flores</h1>
-      <p class="hero-role">Electronics Engineering Student &middot; Simon Fraser University</p>
+      <p class="hero-role">Computer Engineering Student &middot; Simon Fraser University</p>
       <p class="hero-tagline">I like turning ideas into working hardware — from CAD models
         and stress analysis to motor-driven mechanisms and the circuits and code that run
         them.</p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary">View projects</a>
-        <a href="Guillermo_Flores_Resume2.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Download resume</a>
+        <a href="Guillermo_Flores_Resume%20(1).pdf" class="btn btn-secondary" target="_blank" rel="noopener">Download resume</a>
       </div>
     </div>
+    <a href="#about" class="scroll-cue" aria-label="Scroll to About"><span></span></a>
   </section>
 
   <!-- ============ ABOUT ============ -->
@@ -65,9 +57,8 @@
         </div>
       </div>
       <div class="about-copy">
-        <p class="field-label">About</p>
         <h2>Professional Summary</h2>
-        <p>I'm an Electronics Engineering student at Simon Fraser University with
+        <p>I'm a Computer Engineering student at Simon Fraser University with
           hands-on experience across mechanical design, prototyping, and circuit
           integration. My most recent project involved leading the mechanical design
           of an automated measuring cup — CAD modeling, stress analysis, and a
@@ -80,34 +71,65 @@
     </div>
   </section>
 
+  <!-- ============ EDUCATION ============ -->
+  <section class="education" id="education" data-reveal>
+    <div class="wrap">
+      <h2>Education</h2>
+
+      <div class="log-list">
+        <div class="log-entry">
+          <span class="log-date">Sep 2026 &ndash; Current</span>
+          <div class="log-body">
+            <h3>Simon Fraser University</h3>
+            <p class="log-org">Bachelor of Applied Science, Computer Engineering</p>
+            <p class="log-desc">GPA 3.6 / 4.33 &middot; Dean's Honor Roll</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ SKILLS ============ -->
   <section class="skills" id="skills" data-reveal>
     <div class="wrap">
-      <p class="field-label">Skills</p>
       <h2>Technical Skills</h2>
 
+      <h3 class="skill-group-title">Firmware &amp; Embedded Systems</h3>
+      <ul class="skill-grid skill-grid-2">
+        <li>C</li>
+        <li>STM32</li>
+      </ul>
+
+      <h3 class="skill-group-title">Engineering &amp; CAD Software</h3>
       <ul class="skill-grid skill-grid-3">
         <li>C++</li>
-        <li>MATLAB</li>
-        <li>Python</li>
-        <li>MS Excel / Office</li>
         <li>SolidWorks</li>
-        <li>Prototyping</li>
-        <li>Electrical Circuit Integration</li>
-        <li>Component Fitment &amp; Assembly</li>
-        <li>Iterative Bench Testing</li>
+        <li>CAD Applications</li>
+        <li>MATLAB</li>
+        <li>Digital Logic Circuit</li>
+        <li>MS Excel / Office</li>
+      </ul>
+
+      <h3 class="skill-group-title">Documentation &amp; Data Analysis</h3>
+      <ul class="skill-grid skill-grid-2">
+        <li>Technical Document Control</li>
+        <li>Quality Assurance / Quality Check</li>
+      </ul>
+
+      <h3 class="skill-group-title">Lab &amp; Testing</h3>
+      <ul class="skill-grid">
+        <li>Volumetric Testing</li>
       </ul>
 
       <h2 class="skills-second-title">Professional Skills</h2>
 
-      <!-- EDIT: placeholder — replace with real professional skills -->
       <ul class="skill-grid skill-grid-2">
-        <li>Skill 1</li>
-        <li>Skill 2</li>
-        <li>Skill 3</li>
-        <li>Skill 4</li>
-        <li>Skill 5</li>
-        <li>Skill 6</li>
+        <li>Teamwork &amp; Cross-Functional Collaboration</li>
+        <li>Technical Communication</li>
+        <li>Problem Solving</li>
+        <li>Leadership &amp; Training</li>
+        <li>Time Management</li>
+        <li>Adaptability Under Pressure</li>
       </ul>
     </div>
   </section>
@@ -115,10 +137,9 @@
   <!-- ============ PROJECTS ============ -->
   <section class="projects" id="projects" data-reveal>
     <div class="wrap">
-      <p class="field-label">Projects</p>
-      <h2>Selected work</h2>
+      <h2>Projects</h2>
 
-      <div class="project-grid project-grid-single">
+      <div class="project-grid">
 
         <article class="project-card">
           <header class="project-head">
@@ -142,18 +163,49 @@
           </dl>
         </article>
 
+        <article class="project-card">
+          <header class="project-head">
+            <h3>Student Budget Tracker</h3>
+            <span class="status status-done">Completed &middot; Oct–Dec 2025</span>
+          </header>
+          <ul class="project-points">
+            <li>I built and iterated on the budget enforcement feature of a C++
+              command-line budget tracker, developing and testing logic that flags and
+              restricts overspending across budget categories as part of a 5-member
+              team.</li>
+            <li>I applied iterative debugging and unit testing to validate the core
+              enforcement algorithms, ensuring accurate, reliable real-time tracking of
+              spending against set limits.</li>
+            <li>I collaborated with teammates on the input handling, data storage, and
+              reporting modules to integrate my feature into a cohesive command-line
+              application over a 3-month development cycle.</li>
+          </ul>
+          <dl class="project-meta">
+            <div><dt>Stack</dt><dd>C++, command-line application, unit testing</dd></div>
+            <div><dt>Role</dt><dd>Budget enforcement developer, 5-member team</dd></div>
+          </dl>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <!-- ============ WORK EXPERIENCE ============ -->
+  <!-- ============ EXPERIENCE ============ -->
   <section class="work-experience" id="work-experience" data-reveal>
     <div class="wrap">
-      <p class="field-label">Experience</p>
-      <h2>Work Experience</h2>
+      <h2>Experience</h2>
 
       <div class="log-list">
-        <!-- EDIT: more entries can be added here -->
+        <div class="log-entry">
+          <span class="log-date">Oct 2026 &ndash; Current</span>
+          <div class="log-body">
+            <h3>Firmware Developer</h3>
+            <p class="log-org">SFU Robot Soccer, Burnaby, BC</p>
+            <p class="log-desc">I develop C firmware for STM32 microcontrollers on the
+              firmware team of SFU's first robot soccer club, building robots that
+              compete in RoboCup Soccer competitions.</p>
+          </div>
+        </div>
         <div class="log-entry">
           <span class="log-date">Apr 2023 &ndash; Current</span>
           <div class="log-body">
@@ -181,7 +233,6 @@
   <!-- ============ VOLUNTEER EXPERIENCE ============ -->
   <section class="volunteer-experience" id="volunteer-experience" data-reveal>
     <div class="wrap">
-      <p class="field-label">Community</p>
       <h2>Volunteer Experience</h2>
 
       <div class="log-list">
@@ -190,9 +241,8 @@
           <div class="log-body">
             <h3>Altar Serving</h3>
             <p class="log-org">All Saints Parish, Coquitlam, BC</p>
-            <p class="log-desc">I train incoming servers and coordinate the moving
-              parts behind the scenes so liturgical services run smoothly week to
-              week.</p>
+            <p class="log-desc">I mentor and train around 30 younger and newer altar
+              servers in proper technique and responsibilities during services.</p>
           </div>
         </div>
         <div class="log-entry">
@@ -204,6 +254,16 @@
               get directed toward the community initiatives that need them most.</p>
           </div>
         </div>
+        <div class="log-entry">
+          <span class="log-date">Sep 2026 &ndash; Current</span>
+          <div class="log-body">
+            <h3>Faith Leader</h3>
+            <p class="log-org">Christian Catholic Outreach, Simon Fraser University</p>
+            <p class="log-desc">I lead weekly small group discussions for a self-recruited
+              cohort of students, personally reaching out to around 15 people to build
+              membership and foster a faith-centered community.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -211,16 +271,14 @@
   <!-- ============ INTERESTS ============ -->
   <section class="interests" id="interests" data-reveal>
     <div class="wrap">
-      <p class="field-label">Interests</p>
       <h2>Outside of class</h2>
 
-      <!-- EDIT: placeholder — swap in your real interests -->
       <ul class="tag-list">
-        <li>Robotics</li>
-        <li>Cooking</li>
-        <li>3D Printing</li>
+        <li>Firmware &amp; Embedded Systems</li>
+        <li>Photography</li>
+        <li>Culinary Arts</li>
         <li>The Outdoors</li>
-        <li>Community Volunteering</li>
+        <li>Christian Theology &amp; Church History</li>
       </ul>
     </div>
   </section>
@@ -228,12 +286,11 @@
   <!-- ============ CONTACT ============ -->
   <section class="contact" id="contact" data-reveal>
     <div class="wrap contact-inner">
-      <p class="field-label">Contact</p>
       <h2>Let's talk</h2>
       <p>Open to internships, co-ops, and project collaborations. Based in
         Coquitlam, BC.</p>
       <div class="contact-links">
-        <a href="mailto:guf@sfu.ca">guf@sfu.ca</a>
+        <a href="mailto:uflores2025@gmail.com">uflores2025@gmail.com</a>
         <a href="https://www.linkedin.com/in/-guf" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
@@ -242,12 +299,8 @@
 </main>
 
 <footer class="site-footer">
-  <div class="wrap footer-inner title-block">
-    <div class="tb-cell"><span class="tb-label">Drawn by</span><span class="tb-value">G. Flores</span></div>
-    <div class="tb-cell"><span class="tb-label">Sheet</span><span class="tb-value">08 of 08</span></div>
-    <div class="tb-cell"><span class="tb-label">Rev</span><span class="tb-value">2026.09</span></div>
-    <div class="tb-cell"><span class="tb-label">Scale</span><span class="tb-value">NTS</span></div>
-    <div class="tb-cell"><span class="tb-label">&copy;</span><span class="tb-value">2026</span></div>
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 Guillermo Flores. All rights reserved.</p>
   </div>
 </footer>
 
