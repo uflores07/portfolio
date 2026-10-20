@@ -33,11 +33,53 @@
     });
   }
 
+  // interest pages mark their nav link active in the HTML; bring it into view on narrow screens
+  var presetActive = document.querySelector('.nav a.active');
+  if (presetActive && nav.scrollWidth > nav.clientWidth) {
+    nav.scrollLeft = presetActive.offsetLeft - nav.offsetLeft - 16;
+  }
+
+  /* Staggered entrances: number the children of each list */
+  document.querySelectorAll('.skill-grid, .log-list, .project-grid, .board-modules, .gallery').forEach(function (list) {
+    list.setAttribute('data-stagger', '');
+    Array.prototype.forEach.call(list.children, function (child, i) {
+      child.style.setProperty('--i', i);
+    });
+  });
+
+  /* Heading decode: scramble each section heading, then resolve it left to right */
+  var GLYPHS = '0123456789ABCDEF#%&*<>/';
+  function decode(el) {
+    var original = el.textContent;
+    el.setAttribute('aria-label', original);
+    var start = null;
+    var duration = 650;
+    function step(now) {
+      if (start === null) start = now;
+      var progress = Math.min(1, (now - start) / duration);
+      var revealed = Math.floor(progress * original.length);
+      var out = original.slice(0, revealed);
+      for (var i = revealed; i < original.length; i++) {
+        var ch = original[i];
+        out += ch === ' ' ? ' ' : GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+      }
+      el.textContent = out;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = original;
+    }
+    requestAnimationFrame(step);
+  }
+
+  function onReveal(section) {
+    section.classList.add('in-view');
+    if (!reduceMotion) section.querySelectorAll('h2').forEach(decode);
+  }
+
   if ('IntersectionObserver' in window) {
     var revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
+          onReveal(entry.target);
           revealObserver.unobserve(entry.target);
         }
       });
@@ -77,6 +119,158 @@
   }
 
   initCircuit();
+  initCursor();
+  initModules();
+  initLightbox();
+
+  /* Probe-tip cursor: exact dot + trailing ring, mouse devices only */
+  function initCursor() {
+    if (reduceMotion || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    var dot = document.createElement('div');
+    var ring = document.createElement('div');
+    dot.className = 'cursor-dot';
+    ring.className = 'cursor-ring';
+    dot.setAttribute('aria-hidden', 'true');
+    ring.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+    root.classList.add('has-cursor');
+
+    var x = -100, y = -100, rx = x, ry = y, seen = false;
+    var HOVERABLE = 'a, button, .project-card, .module-card, .skill-grid li, .gallery-item, .log-entry';
+
+    window.addEventListener('mousemove', function (e) {
+      x = e.clientX;
+      y = e.clientY;
+      dot.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+      if (!seen) {
+        seen = true;
+        rx = x;
+        ry = y;
+      }
+      root.classList.add('cursor-visible');
+    }, { passive: true });
+
+    document.addEventListener('mouseover', function (e) {
+      root.classList.toggle('cursor-hover', !!e.target.closest(HOVERABLE));
+    });
+    root.addEventListener('mouseleave', function () { root.classList.remove('cursor-visible'); });
+    window.addEventListener('mousedown', function () { root.classList.add('cursor-down'); });
+    window.addEventListener('mouseup', function () { root.classList.remove('cursor-down'); });
+
+    (function follow() {
+      rx += (x - rx) * 0.18;
+      ry += (y - ry) * 0.18;
+      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
+      requestAnimationFrame(follow);
+    })();
+  }
+
+  /* Interest modules: fire a pulse down the trace, then open the module's page */
+  function initModules() {
+    var board = document.querySelector('.board');
+    if (!board) return;
+
+    board.querySelectorAll('.module-link').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (reduceMotion || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        var mod = link.closest('.module');
+        board.classList.add('is-firing');
+        mod.classList.add('is-firing');
+        setTimeout(function () { window.location.href = link.href; }, 420);
+      });
+    });
+
+    // coming back via the back button restores the page from cache; clear the lit state
+    window.addEventListener('pageshow', function () {
+      board.classList.remove('is-firing');
+      board.querySelectorAll('.module.is-firing').forEach(function (m) { m.classList.remove('is-firing'); });
+    });
+  }
+
+  /* Gallery lightbox (interest pages) */
+  function initLightbox() {
+    var items = Array.prototype.slice.call(document.querySelectorAll('.gallery-open'));
+    if (!items.length) return;
+
+    var box = document.createElement('div');
+    box.className = 'lightbox';
+    box.hidden = true;
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Photo viewer');
+    box.innerHTML =
+      '<button type="button" class="lightbox-close" aria-label="Close">&times;</button>' +
+      '<button type="button" class="lightbox-prev" aria-label="Previous photo">&lsaquo;</button>' +
+      '<figure><img alt=""><figcaption></figcaption></figure>' +
+      '<button type="button" class="lightbox-next" aria-label="Next photo">&rsaquo;</button>';
+    document.body.appendChild(box);
+
+    var img = box.querySelector('img');
+    var caption = box.querySelector('figcaption');
+    var closeBtn = box.querySelector('.lightbox-close');
+    var prevBtn = box.querySelector('.lightbox-prev');
+    var nextBtn = box.querySelector('.lightbox-next');
+    var current = 0;
+
+    function show(i) {
+      current = (i + items.length) % items.length;
+      var item = items[current];
+      var thumb = item.querySelector('img');
+      img.src = item.getAttribute('data-full') || thumb.src;
+      img.alt = thumb ? thumb.alt : '';
+      caption.textContent = item.getAttribute('data-caption') || '';
+      prevBtn.hidden = nextBtn.hidden = items.length < 2;
+    }
+
+    function open(i) {
+      show(i);
+      box.hidden = false;
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+
+    function close() {
+      box.hidden = true;
+      document.body.style.overflow = '';
+      items[current].focus();
+    }
+
+    items.forEach(function (item, i) {
+      item.addEventListener('click', function () { open(i); });
+    });
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', function () { show(current - 1); });
+    nextBtn.addEventListener('click', function () { show(current + 1); });
+    box.addEventListener('click', function (e) {
+      if (e.target === box) close();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (box.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(current - 1);
+      else if (e.key === 'ArrowRight') show(current + 1);
+      else if (e.key === 'Tab') {
+        var focusable = [closeBtn, prevBtn, nextBtn].filter(function (b) { return !b.hidden; });
+        var idx = focusable.indexOf(document.activeElement);
+        e.preventDefault();
+        var next = e.shiftKey ? idx - 1 : idx + 1;
+        focusable[(next + focusable.length) % focusable.length].focus();
+      }
+    });
+
+    var touchX = null;
+    box.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', function (e) {
+      if (touchX === null) return;
+      var dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));
+      touchX = null;
+    });
+  }
 
   /* Hero circuit board: procedurally routed traces with travelling signal pulses */
   function initCircuit() {
@@ -86,8 +280,8 @@
     var ctx = canvas.getContext('2d');
 
     var GRID = 28;
-    var COPPER = '212, 137, 63';
-    var SIGNAL = '61, 220, 132';
+    var COPPER = '232, 150, 74';
+    var SIGNAL = '72, 240, 143';
     var BG = '#0a0c0b';
     var DIRS = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]];
 
@@ -231,7 +425,7 @@
       traces.forEach(function (t) {
         var target = mouse.active ? Math.max(0, 1 - distToTrace(t, mouse.x, mouse.y) / 150) : 0;
         t.glow += (target - t.glow) * Math.min(1, dt * 8);
-        var alpha = 0.14 + t.glow * 0.55;
+        var alpha = 0.2 + t.glow * 0.55;
 
         ctx.lineWidth = 1.4 + t.glow * 0.6;
         ctx.strokeStyle = 'rgba(' + COPPER + ',' + alpha + ')';
