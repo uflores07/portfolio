@@ -119,53 +119,8 @@
   }
 
   initCircuit();
-  initCursor();
   initModules();
   initLightbox();
-
-  /* Probe-tip cursor: exact dot + trailing ring, mouse devices only */
-  function initCursor() {
-    if (reduceMotion || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-    var dot = document.createElement('div');
-    var ring = document.createElement('div');
-    dot.className = 'cursor-dot';
-    ring.className = 'cursor-ring';
-    dot.setAttribute('aria-hidden', 'true');
-    ring.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(dot);
-    document.body.appendChild(ring);
-    root.classList.add('has-cursor');
-
-    var x = -100, y = -100, rx = x, ry = y, seen = false;
-    var HOVERABLE = 'a, button, .project-card, .module-card, .skill-grid li, .gallery-item, .log-entry';
-
-    window.addEventListener('mousemove', function (e) {
-      x = e.clientX;
-      y = e.clientY;
-      dot.style.transform = 'translate(' + x + 'px,' + y + 'px)';
-      if (!seen) {
-        seen = true;
-        rx = x;
-        ry = y;
-      }
-      root.classList.add('cursor-visible');
-    }, { passive: true });
-
-    document.addEventListener('mouseover', function (e) {
-      root.classList.toggle('cursor-hover', !!e.target.closest(HOVERABLE));
-    });
-    root.addEventListener('mouseleave', function () { root.classList.remove('cursor-visible'); });
-    window.addEventListener('mousedown', function () { root.classList.add('cursor-down'); });
-    window.addEventListener('mouseup', function () { root.classList.remove('cursor-down'); });
-
-    (function follow() {
-      rx += (x - rx) * 0.18;
-      ry += (y - ry) * 0.18;
-      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
-      requestAnimationFrame(follow);
-    })();
-  }
 
   /* Interest modules: fire a pulse down the trace, then open the module's page */
   function initModules() {
@@ -194,6 +149,13 @@
   function initLightbox() {
     var items = Array.prototype.slice.call(document.querySelectorAll('.gallery-open'));
     if (!items.length) return;
+
+    // discourage saving photos: block the right-click menu and dragging on gallery images
+    ['contextmenu', 'dragstart'].forEach(function (type) {
+      document.addEventListener(type, function (e) {
+        if (e.target.closest('.gallery-item, .lightbox')) e.preventDefault();
+      });
+    });
 
     var box = document.createElement('div');
     box.className = 'lightbox';
