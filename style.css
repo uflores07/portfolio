@@ -1119,54 +1119,6 @@ main p a:not(.btn) {
 main p a:not(.btn):hover { background-size: 100% 1px; }
 
 /* ===========================================================
-   Custom cursor (desktop only — script.js adds .has-cursor)
-   =========================================================== */
-html.has-cursor,
-html.has-cursor * { cursor: none !important; }
-
-.cursor-dot,
-.cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0;
-}
-.cursor-visible .cursor-dot,
-.cursor-visible .cursor-ring { opacity: 1; }
-
-.cursor-dot {
-  width: 6px;
-  height: 6px;
-  margin: -3px 0 0 -3px;
-  background: var(--signal);
-  box-shadow: 0 0 8px var(--signal-glow);
-  transition: opacity 0.2s ease;
-}
-
-.cursor-ring {
-  width: 32px;
-  height: 32px;
-  margin: -16px 0 0 -16px;
-  border: 1px solid rgba(243, 246, 244, 0.45);
-  transition: width 0.25s ease, height 0.25s ease, margin 0.25s ease, border-color 0.25s ease, background 0.25s ease, opacity 0.2s ease;
-}
-.cursor-hover .cursor-ring {
-  width: 52px;
-  height: 52px;
-  margin: -26px 0 0 -26px;
-  border-color: var(--copper);
-  background: rgba(232, 150, 74, 0.08);
-}
-.cursor-down .cursor-ring {
-  width: 22px;
-  height: 22px;
-  margin: -11px 0 0 -11px;
-}
-
-/* ===========================================================
    Interest pages
    =========================================================== */
 .interest-hero {
@@ -1197,14 +1149,6 @@ html.has-cursor * { cursor: none !important; }
 }
 .interest-hero-head .module-icon { width: 52px; height: 52px; }
 .interest-hero-head .module-icon svg { width: 26px; height: 26px; }
-
-.interest-hero-index {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  color: var(--signal);
-}
 
 .interest-hero h1 {
   font-size: clamp(2.25rem, 6vw, 3.75rem);
@@ -1274,6 +1218,16 @@ html.has-cursor * { cursor: none !important; }
   transition: transform 0.5s ease;
 }
 .gallery-open:hover img { transform: scale(1.04); }
+
+/* discourage saving: no image drag, no right-click/long-press "save image" target */
+.gallery-item img,
+.lightbox img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+          user-select: none;
+  -webkit-touch-callout: none;
+}
 .gallery-open:focus-visible { outline: 2px solid var(--signal); outline-offset: -2px; }
 
 .gallery-item-wide {
@@ -1281,6 +1235,19 @@ html.has-cursor * { cursor: none !important; }
   aspect-ratio: auto;
   min-height: 96px;
 }
+
+/* a wide photo across both columns, and a tall photo spanning two rows */
+.gallery { grid-auto-flow: dense; }
+.gallery-item-feature {
+  grid-column: 1 / -1;
+  aspect-ratio: 8 / 3;
+}
+.gallery-item-tall {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+/* tall photos placed side by side in one row */
+.gallery-item-portrait { aspect-ratio: 2 / 3; }
 
 .gallery-ig {
   display: flex;
@@ -1543,11 +1510,14 @@ html.has-cursor * { cursor: none !important; }
 
 @media (max-width: 560px) {
   .gallery { grid-template-columns: 1fr; }
+  .gallery-item-feature { aspect-ratio: 3 / 2; }
+  .gallery-item-tall { grid-row: auto; aspect-ratio: 2 / 3; }
   .cta-text { display: none; }
   .module-nav { grid-template-columns: 1fr; }
   .module-nav .module-nav-next { grid-column: 1; }
   .lightbox { grid-template-columns: 1fr; padding: 4rem 0.75rem 5rem; }
   .lightbox figure { grid-column: 1; grid-row: 1; }
+  .lightbox img { max-height: calc(100vh - 13rem); }
   .lightbox-prev,
   .lightbox-next { position: absolute; bottom: 1.25rem; }
   .lightbox-prev { left: calc(50% - 56px); }
