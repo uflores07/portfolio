@@ -4,11 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Guillermo Flores | Computer Engineering Portfolio</title>
-<meta name="description" content="Guillermo Flores is a Computer Engineering student at Simon Fraser University building embedded firmware, mechanical prototypes and the circuits that connect them.">
+<meta name="description" content="Guillermo Flores is a Computer Engineering student at Simon Fraser University with hands-on experience in mechanical design, prototyping and circuit integration.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<meta name="theme-color" content="#0a0c0b">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://portfolio-3ii.pages.dev/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guillermo Flores | Computer Engineering Portfolio">
+<meta property="og:description" content="Guillermo Flores is a Computer Engineering student at Simon Fraser University with hands-on experience in mechanical design, prototyping and circuit integration.">
+<meta property="og:url" content="https://portfolio-3ii.pages.dev/">
+<meta property="og:image" content="https://portfolio-3ii.pages.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <div class="progress-bar" aria-hidden="true"><div class="progress-fill"></div></div>
 
@@ -18,18 +31,16 @@
     <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav class="nav" id="site-nav">
       <a href="index.html" class="active" aria-current="page">Home</a>
-      <a href="education.html">Education</a>
-      <a href="skills.html">Skills</a>
       <a href="projects.html">Projects</a>
       <a href="experience.html">Experience</a>
-      <a href="community.html">Community</a>
-      <a href="interests.html">Interests</a>
+      <a href="skills.html">Skills</a>
+      <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main">
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="top">
@@ -37,33 +48,52 @@
     <div class="hero-vignette" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <h1>Guillermo Flores</h1>
-      <p class="hero-role">Computer Engineering Student &middot; Simon Fraser University</p>
+      <p class="hero-role">Computer Engineering Student &middot; Simon&nbsp;Fraser&nbsp;University</p>
       <p class="hero-tagline">I like turning ideas into working hardware, from CAD models
         and stress analysis to motor-driven mechanisms and the circuits and code that run
         them.</p>
       <div class="hero-actions">
         <a href="projects.html" class="btn btn-primary">View projects</a>
-        <a href="Guillermo_Flores_Resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Download resume</a>
+        <a href="Guillermo_Flores_Resume.pdf" class="btn btn-secondary" download>Download resume</a>
       </div>
+    </div>
+  </section>
+
+  <section class="featured" data-reveal>
+    <div class="wrap">
+      <h2>Featured Projects</h2>
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-head">
+            <h3><a class="card-link" href="projects.html">Automated Measuring Cup</a></h3>
+            <span class="status status-done">Completed</span>
+          </div>
+          <p class="interest-summary">Led mechanical design for an 8-person team: CAD modeling, stress analysis, and a motor-driven dispensing mechanism, built and tested across 2 prototypes.</p>
+        </article>
+        <article class="project-card">
+          <div class="project-head">
+            <h3><a class="card-link" href="projects.html">Student Budget Tracker</a></h3>
+            <span class="status status-done">Completed</span>
+          </div>
+          <p class="interest-summary">Built the budget enforcement feature of a C++ command-line app in a 5-person team, validated with unit testing and iterative debugging.</p>
+        </article>
+      </div>
+      <p class="featured-more"><a href="projects.html">See all projects &rarr;</a></p>
     </div>
   </section>
 
   <!-- ============ ABOUT ============ -->
   <section class="about" id="about" data-reveal>
     <div class="wrap about-inner">
-      <!-- PHOTO: to add a headshot, put this back above about-copy:
-        <div class="about-photo"><div class="photo-frame"><img src="images/me.jpg" alt="Guillermo Flores"></div></div> -->
+      <!-- PHOTO: save a 440x550 portrait as images/me.jpg, then replace this comment with:
+        <div class="about-photo"><div class="photo-frame"><img src="images/me.jpg" alt="Guillermo Flores" width="440" height="550"></div></div> -->
       <div class="about-copy">
-        <h2>Professional Summary</h2>
+        <h2>About</h2>
         <p>I'm a Computer Engineering student at Simon Fraser University with
           hands-on experience across mechanical design, prototyping, and circuit
           integration. My most recent project involved leading the mechanical design
           of an automated measuring cup, including CAD modeling, stress analysis, and a
           motor-driven dispensing mechanism built and tested with an 8-person team.</p>
-        <p>Outside of coursework, I work as a cook and have spent a summer landscaping,
-          both of which have sharpened how I handle pressure, manage time, and work
-          as part of a team. I'm also active in my community through volunteer work
-          with my church and local outreach initiatives.</p>
       </div>
     </div>
   </section>
