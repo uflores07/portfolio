@@ -49,7 +49,7 @@
   });
 
   /* Staggered entrances: number the children of each list */
-  document.querySelectorAll('.spec-table, .log-list, .project-grid, .board-modules, .gallery').forEach(function (list) {
+  document.querySelectorAll('.spec-table, .log-list, .project-grid, .interest-grid, .gallery').forEach(function (list) {
     list.setAttribute('data-stagger', '');
     Array.prototype.forEach.call(list.children, function (child, i) {
       child.style.setProperty('--i', i);
@@ -75,31 +75,7 @@
   }
 
   initCircuit();
-  initModules();
   initLightbox();
-
-  /* Interest modules: fire a pulse down the trace, then open the module's page */
-  function initModules() {
-    var board = document.querySelector('.board');
-    if (!board) return;
-
-    board.querySelectorAll('.module-link').forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        if (reduceMotion || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-        e.preventDefault();
-        var mod = link.closest('.module');
-        board.classList.add('is-firing');
-        mod.classList.add('is-firing');
-        setTimeout(function () { window.location.href = link.href; }, 420);
-      });
-    });
-
-    // coming back via the back button restores the page from cache; clear the lit state
-    window.addEventListener('pageshow', function () {
-      board.classList.remove('is-firing');
-      board.querySelectorAll('.module.is-firing').forEach(function (m) { m.classList.remove('is-firing'); });
-    });
-  }
 
   /* Gallery lightbox (interest pages) */
   function initLightbox() {
