@@ -206,7 +206,7 @@ section {
 main > section:nth-of-type(even) { background: var(--bg-alt); }
 
 /* copper trace divider with two vias */
-main > section:not(.hero):not(.interest-hero)::before {
+main > section:not(.hero):not(.page-hero)::before {
   content: "";
   position: absolute;
   top: 0;
@@ -636,13 +636,6 @@ main > section.in-view h2::before,
 /* ===========================================================
    Interests — circuit board of modules
    =========================================================== */
-.section-intro {
-  margin: -0.25rem 0 1.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--text-dim);
-}
-
 .board {
   --gap: 1rem;
   --stub: 28px;
@@ -903,13 +896,14 @@ main p a:not(.btn) {
 main p a:not(.btn):hover { background-size: 100% 1px; }
 
 /* ===========================================================
-   Interest pages
+   Page header (every tab page and interest page)
    =========================================================== */
-.interest-hero {
-  padding: 4rem 0 3.5rem;
+.page-hero {
+  padding: 4rem 0 3rem;
   background: var(--bg);
   border-bottom: 1px solid var(--line);
 }
+.page-hero + section { padding-top: 3.5rem; }
 
 .back-link {
   display: inline-flex;
@@ -922,12 +916,14 @@ main p a:not(.btn):hover { background-size: 100% 1px; }
 }
 .back-link:hover { color: var(--copper-bright); }
 
-.interest-hero h1 {
+.page-hero h1 {
   font-size: clamp(2.25rem, 6vw, 3.75rem);
   margin-bottom: 0.4em;
 }
+.page-hero h1:last-child { margin-bottom: 0; }
 
-.interest-intro {
+.page-intro {
+  margin-bottom: 0;
   font-size: 1.1rem;
   color: var(--text-soft);
 }

@@ -16,16 +16,9 @@
     updateProgress();
   }
 
-  /* Scroll reveal + active nav LED */
+  /* Scroll reveal (each page marks its own nav tab active in the HTML) */
   var revealSections = document.querySelectorAll('section[data-reveal]');
-  var navSections = document.querySelectorAll('main section[id]');
   var navLinks = document.querySelectorAll('.nav a');
-
-  function setActiveNav(id) {
-    navLinks.forEach(function (a) {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
-    });
-  }
 
   /* Mobile menu */
   var header = document.querySelector('.site-header');
@@ -77,13 +70,6 @@
       });
     }, { threshold: 0.08 });
     revealSections.forEach(function (s) { revealObserver.observe(s); });
-
-    var navObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) setActiveNav(entry.target.id);
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-    navSections.forEach(function (s) { navObserver.observe(s); });
   } else {
     revealSections.forEach(function (s) { s.classList.add('in-view'); });
   }
