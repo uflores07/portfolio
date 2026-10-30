@@ -19,60 +19,52 @@
   /* Scroll reveal + active nav LED */
   var revealSections = document.querySelectorAll('section[data-reveal]');
   var navSections = document.querySelectorAll('main section[id]');
-  var nav = document.querySelector('.nav');
   var navLinks = document.querySelectorAll('.nav a');
 
   function setActiveNav(id) {
     navLinks.forEach(function (a) {
-      var isActive = a.getAttribute('href') === '#' + id;
-      a.classList.toggle('active', isActive);
-      // on narrow screens the nav scrolls sideways; keep the lit link visible
-      if (isActive && nav.scrollWidth > nav.clientWidth) {
-        nav.scrollTo({ left: a.offsetLeft - nav.offsetLeft - 16, behavior: reduceMotion ? 'auto' : 'smooth' });
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+  }
+
+  /* Mobile menu */
+  var header = document.querySelector('.site-header');
+  var navToggle = document.querySelector('.nav-toggle');
+  function setMenu(open) {
+    header.classList.toggle('nav-open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.textContent = open ? 'Close' : 'Menu';
+  }
+  if (navToggle) {
+    navToggle.addEventListener('click', function () {
+      setMenu(!header.classList.contains('nav-open'));
+    });
+    navLinks.forEach(function (a) {
+      a.addEventListener('click', function () { setMenu(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && header.classList.contains('nav-open')) {
+        setMenu(false);
+        navToggle.focus();
       }
     });
   }
 
-  // interest pages mark their nav link active in the HTML; bring it into view on narrow screens
-  var presetActive = document.querySelector('.nav a.active');
-  if (presetActive && nav.scrollWidth > nav.clientWidth) {
-    nav.scrollLeft = presetActive.offsetLeft - nav.offsetLeft - 16;
-  }
+  /* Footer year */
+  document.querySelectorAll('.year').forEach(function (el) {
+    el.textContent = new Date().getFullYear();
+  });
 
   /* Staggered entrances: number the children of each list */
-  document.querySelectorAll('.skill-grid, .log-list, .project-grid, .board-modules, .gallery').forEach(function (list) {
+  document.querySelectorAll('.spec-table, .log-list, .project-grid, .board-modules, .gallery').forEach(function (list) {
     list.setAttribute('data-stagger', '');
     Array.prototype.forEach.call(list.children, function (child, i) {
       child.style.setProperty('--i', i);
     });
   });
 
-  /* Heading decode: scramble each section heading, then resolve it left to right */
-  var GLYPHS = '0123456789ABCDEF#%&*<>/';
-  function decode(el) {
-    var original = el.textContent;
-    el.setAttribute('aria-label', original);
-    var start = null;
-    var duration = 650;
-    function step(now) {
-      if (start === null) start = now;
-      var progress = Math.min(1, (now - start) / duration);
-      var revealed = Math.floor(progress * original.length);
-      var out = original.slice(0, revealed);
-      for (var i = revealed; i < original.length; i++) {
-        var ch = original[i];
-        out += ch === ' ' ? ' ' : GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-      }
-      el.textContent = out;
-      if (progress < 1) requestAnimationFrame(step);
-      else el.textContent = original;
-    }
-    requestAnimationFrame(step);
-  }
-
   function onReveal(section) {
     section.classList.add('in-view');
-    if (!reduceMotion) section.querySelectorAll('h2').forEach(decode);
   }
 
   if ('IntersectionObserver' in window) {
@@ -94,28 +86,6 @@
     navSections.forEach(function (s) { navObserver.observe(s); });
   } else {
     revealSections.forEach(function (s) { s.classList.add('in-view'); });
-  }
-
-  /* Boot line typing */
-  var boot = document.querySelector('.boot-line');
-  if (boot) {
-    var bootText = boot.querySelector('.boot-text');
-    var fullText = bootText.textContent;
-    if (reduceMotion) {
-      boot.classList.add('done');
-    } else {
-      bootText.textContent = '';
-      var typed = 0;
-      (function typeNext() {
-        typed++;
-        bootText.textContent = fullText.slice(0, typed);
-        if (typed < fullText.length) {
-          setTimeout(typeNext, 25 + Math.random() * 40);
-        } else {
-          setTimeout(function () { boot.classList.add('done'); }, 300);
-        }
-      })();
-    }
   }
 
   initCircuit();
@@ -243,7 +213,7 @@
 
     var GRID = 28;
     var COPPER = '232, 150, 74';
-    var SIGNAL = '72, 240, 143';
+    var SIGNAL = '109, 207, 143';
     var BG = '#0a0c0b';
     var DIRS = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]];
 
