@@ -41,6 +41,9 @@
         navToggle.focus();
       }
     });
+    document.addEventListener('click', function (e) {
+      if (header.classList.contains('nav-open') && !header.contains(e.target)) setMenu(false);
+    });
   }
 
   /* Footer year */
