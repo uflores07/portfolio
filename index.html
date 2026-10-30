@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guillermo Flores | Engineering Portfolio</title>
+<title>Guillermo Flores | Computer Engineering Portfolio</title>
+<meta name="description" content="Guillermo Flores is a Computer Engineering student at Simon Fraser University building embedded firmware, mechanical prototypes and the circuits that connect them.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,7 +15,8 @@
 <header class="site-header">
   <div class="wrap header-inner">
     <a href="#top" class="wordmark" aria-label="Back to top">GF</a>
-    <nav class="nav">
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav">
       <a href="#about">About</a>
       <a href="#education">Education</a>
       <a href="#skills">Skills</a>
@@ -33,7 +36,6 @@
     <canvas class="circuit-bg" aria-hidden="true"></canvas>
     <div class="hero-vignette" aria-hidden="true"></div>
     <div class="wrap hero-inner">
-      <p class="boot-line" aria-hidden="true"><span class="boot-text">&gt; boot gf_portfolio.bin ...</span><span class="boot-caret"></span> <span class="boot-ok">[ OK ]</span></p>
       <h1>Guillermo Flores</h1>
       <p class="hero-role">Computer Engineering Student &middot; Simon Fraser University</p>
       <p class="hero-tagline">I like turning ideas into working hardware, from CAD models
@@ -44,18 +46,13 @@
         <a href="Guillermo_Flores_Resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Download resume</a>
       </div>
     </div>
-    <a href="#about" class="scroll-cue" aria-label="Scroll to About"><span></span></a>
   </section>
 
   <!-- ============ ABOUT ============ -->
   <section class="about" id="about" data-reveal>
     <div class="wrap about-inner">
-      <div class="about-photo">
-        <div class="photo-frame">
-          <!-- EDIT: replace with <img src="your-photo.jpg" alt="Your Name"> -->
-          <span class="photo-placeholder">Photo</span>
-        </div>
-      </div>
+      <!-- PHOTO: to add a headshot, put this back above about-copy:
+        <div class="about-photo"><div class="photo-frame"><img src="images/me.jpg" alt="Guillermo Flores"></div></div> -->
       <div class="about-copy">
         <h2>Professional Summary</h2>
         <p>I'm a Computer Engineering student at Simon Fraser University with
@@ -92,57 +89,18 @@
   <!-- ============ SKILLS ============ -->
   <section class="skills" id="skills" data-reveal>
     <div class="wrap">
-      <h2>Technical Skills</h2>
+      <h2>Skills</h2>
 
-      <h3 class="skill-group-title">Languages</h3>
-      <ul class="skill-grid skill-grid-3">
-        <li>C</li>
-        <li>C++</li>
-        <li>MATLAB</li>
-      </ul>
-
-      <h3 class="skill-group-title">Protocols &amp; Hardware</h3>
-      <ul class="skill-grid skill-grid-3">
-        <li>UART</li>
-        <li>SPI</li>
-        <li>I2C</li>
-        <li>CAN</li>
-        <li>STM32</li>
-        <li>Logic Analyzers</li>
-        <li>Oscilloscopes</li>
-        <li>Soldering</li>
-        <li>PCB Assembly</li>
-      </ul>
-
-      <h3 class="skill-group-title">Developer Tools</h3>
-      <ul class="skill-grid skill-grid-5">
-        <li>Git</li>
-        <li>GitLab</li>
-        <li>SolidWorks</li>
-        <li>CAD Applications</li>
-        <li>MS Excel / Office</li>
-      </ul>
-
-      <h3 class="skill-group-title">Practices</h3>
-      <ul class="skill-grid skill-grid-3">
-        <li>Unit Testing</li>
-        <li>Iterative Debugging</li>
-        <li>Code Review</li>
-        <li>Rapid Prototyping</li>
-        <li>Bench Testing</li>
-        <li>Technical Documentation</li>
-      </ul>
-
-      <h2 class="skills-second-title">Professional Skills</h2>
-
-      <ul class="skill-grid skill-grid-2">
-        <li>Teamwork &amp; Cross-Functional Collaboration</li>
-        <li>Technical Communication</li>
-        <li>Problem Solving</li>
-        <li>Leadership &amp; Training</li>
-        <li>Time Management</li>
-        <li>Adaptability Under Pressure</li>
-      </ul>
+      <dl class="spec-table">
+        <div><dt>Languages</dt><dd>C, C++, MATLAB</dd></div>
+        <div><dt>Protocols &amp; hardware</dt><dd>UART, SPI, I2C, CAN, STM32, logic analyzers,
+          oscilloscopes, soldering, PCB assembly</dd></div>
+        <div><dt>Tools</dt><dd>Git, GitLab, SolidWorks, CAD, Microsoft Excel and Office</dd></div>
+        <div><dt>Practices</dt><dd>Unit testing, iterative debugging, code review, rapid
+          prototyping, bench testing, technical documentation</dd></div>
+        <div><dt>Professional</dt><dd>Cross-functional teamwork, technical communication,
+          leadership and training, time management, working under pressure</dd></div>
+      </dl>
     </div>
   </section>
 
@@ -327,9 +285,6 @@
             <span class="module-trace" aria-hidden="true"><span class="module-pulse"></span></span>
             <div class="module-card">
               <div class="module-top"><span class="module-index">01</span><span class="module-led"></span></div>
-              <span class="module-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="1.5"/><rect x="9.5" y="9.5" width="5" height="5" rx=".5"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>
-              </span>
               <h3 class="module-name"><a class="module-link" href="interests/firmware.html">Firmware &amp; Embedded Systems</a></h3>
               <p class="module-tag">Code that drives real hardware</p>
               <span class="module-cta" aria-hidden="true"><span class="cta-text">Read more </span>&rarr;</span>
@@ -339,9 +294,6 @@
             <span class="module-trace" aria-hidden="true"><span class="module-pulse"></span></span>
             <div class="module-card">
               <div class="module-top"><span class="module-index">02</span><span class="module-led"></span></div>
-              <span class="module-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>
-              </span>
               <h3 class="module-name"><a class="module-link" href="interests/photography.html">Photography</a></h3>
               <p class="module-tag">Light, composition &amp; detail</p>
               <a class="module-ig" href="https://www.instagram.com/picsbyuri/" target="_blank" rel="noopener">
@@ -355,9 +307,6 @@
             <span class="module-trace" aria-hidden="true"><span class="module-pulse"></span></span>
             <div class="module-card">
               <div class="module-top"><span class="module-index">03</span><span class="module-led"></span></div>
-              <span class="module-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="6"/><path d="M16 14h6"/><path d="M8 6c0-1.5 1.2-1.5 1.2-3M11.5 6c0-1.5 1.2-1.5 1.2-3"/></svg>
-              </span>
               <h3 class="module-name"><a class="module-link" href="interests/culinary.html">Culinary Arts</a></h3>
               <p class="module-tag">Precision in the kitchen</p>
               <span class="module-cta" aria-hidden="true"><span class="cta-text">View gallery </span>&rarr;</span>
@@ -367,9 +316,6 @@
             <span class="module-trace" aria-hidden="true"><span class="module-pulse"></span></span>
             <div class="module-card">
               <div class="module-top"><span class="module-index">04</span><span class="module-led"></span></div>
-              <span class="module-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l6.5-11 4 6.5 2.5-3.5L21 20z"/><circle cx="17" cy="6" r="2"/></svg>
-              </span>
               <h3 class="module-name"><a class="module-link" href="interests/outdoors.html">The Outdoors</a></h3>
               <p class="module-tag">Recharging outside</p>
               <span class="module-cta" aria-hidden="true"><span class="cta-text">View gallery </span>&rarr;</span>
@@ -379,9 +325,6 @@
             <span class="module-trace" aria-hidden="true"><span class="module-pulse"></span></span>
             <div class="module-card">
               <div class="module-top"><span class="module-index">05</span><span class="module-led"></span></div>
-              <span class="module-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/><path d="M12 6.5v5M9.8 8.5h4.4"/></svg>
-              </span>
               <h3 class="module-name"><a class="module-link" href="interests/theology.html">Christian Theology &amp; Church History</a></h3>
               <p class="module-tag">Faith, ideas &amp; history</p>
               <span class="module-cta" aria-hidden="true"><span class="cta-text">Read more </span>&rarr;</span>
@@ -410,7 +353,13 @@
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <p>&copy; 2026 Guillermo Flores. All rights reserved.</p>
+    <p>&copy; <span class="year">2026</span> Guillermo Flores</p>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="mailto:uflores2025@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/-guf" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/uflores07" target="_blank" rel="noopener">GitHub</a>
+      <a href="Guillermo_Flores_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </nav>
   </div>
 </footer>
 
