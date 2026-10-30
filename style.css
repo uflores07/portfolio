@@ -634,257 +634,90 @@ main > section.in-view h2::before,
 .log-points li::marker { color: var(--copper); }
 
 /* ===========================================================
-   Interests — circuit board of modules
+   Interests — one board per interest (builds on .project-card)
    =========================================================== */
-.board {
-  --gap: 1rem;
-  --stub: 28px;
-  position: relative;
-  padding: 2rem 1.75rem 1.75rem;
-  background-color: #0b0f0d;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-}
-
-.board-mcu {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  width: 170px;
-  height: 58px;
-  margin: 0 auto;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  color: var(--text);
-  background: var(--surface);
-  border: 1px solid var(--copper);
-  border-radius: 2px;
-}
-/* pins along the top and bottom edges */
-.board-mcu::before,
-.board-mcu::after {
-  content: "";
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  height: 5px;
-  background: repeating-linear-gradient(90deg, var(--copper) 0 3px, transparent 3px 10px);
-}
-.board-mcu::before { top: -6px; }
-.board-mcu::after { bottom: -6px; }
-
-.mcu-led {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--signal);
-  animation: heartbeat 2.4s ease-in-out infinite;
-}
-
-@keyframes heartbeat {
-  50% { opacity: 0.35; }
-}
-
-.board-bus {
-  position: relative;
-  height: 34px;
-}
-/* MCU down to the bus */
-.board-bus::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 6px;
-  bottom: 0;
-  width: 2px;
-  margin-left: -1px;
-  background: var(--copper-dim);
-  transition: background 0.2s ease, box-shadow 0.2s ease;
-}
-/* horizontal bus spanning the centers of the first and last module */
-.board-bus::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: calc((100% - 4 * var(--gap)) / 10);
-  right: calc((100% - 4 * var(--gap)) / 10);
-  height: 2px;
-  background: var(--copper-dim);
-  transition: background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.board-modules {
+.interest-grid {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--gap);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
 }
+.interest-card { display: flex; flex-direction: column; }
+.interest-card:first-child { grid-column: 1 / -1; }
+.interest-card .project-head { flex-wrap: nowrap; align-items: baseline; }
 
-.module {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.module-trace {
-  position: relative;
-  align-self: center;
-  width: 2px;
-  height: var(--stub);
-  background: var(--copper-dim);
-  transition: background 0.25s ease, box-shadow 0.25s ease;
-}
-/* via where the stub meets the bus */
-.module-trace::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: -3px;
-  width: 6px;
-  height: 6px;
-  margin-left: -3px;
-  border-radius: 50%;
-  background: var(--copper);
-}
-
-.module-pulse {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 8px;
-  height: 8px;
-  margin: -4px 0 0 -4px;
-  border-radius: 50%;
-  background: var(--signal);
-  box-shadow: 0 0 10px 2px var(--signal-glow);
-  opacity: 0;
-}
-
-.module-card {
-  position: relative;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  padding: 1.1rem 1.1rem 1rem;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  transition: border-color 0.25s ease;
-}
-
-.module-top {
-  display: flex;
+/* index number with a status LED that lights on hover */
+.interest-index {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.5rem;
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--text-dim);
 }
-
-.module-led {
+.interest-index::after {
+  content: "";
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: var(--line-strong);
-  transition: background 0.25s ease, box-shadow 0.25s ease;
+  transition: background 0.25s ease;
+}
+.interest-card:hover .interest-index::after { background: var(--signal); }
+
+.interest-summary {
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+  color: var(--text-soft);
 }
 
-.module-name {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.3;
+.interest-foot {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  border-top: 1px dashed var(--line-strong);
 }
+.interest-cta {
+  margin-left: auto;
+  color: var(--copper);
+  transition: color 0.25s ease;
+}
+.interest-card:hover .interest-cta { color: var(--copper-bright); }
 
-.module-link { color: var(--text); }
-.module-link:hover { color: var(--text); }
 /* stretched link: the whole card is clickable */
-.module-link::after {
+.card-link { color: var(--text); }
+.card-link:hover { color: var(--text); }
+.card-link::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   border-radius: 4px;
 }
-.module-link:focus-visible { outline: none; }
-.module-link:focus-visible::after {
+.card-link:focus-visible { outline: none; }
+.card-link:focus-visible::after {
   outline: 2px solid var(--signal);
   outline-offset: 3px;
 }
 
-.module-tag {
-  margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.45;
-  color: var(--text-soft);
-}
-
-.module-ig {
+/* sits above the stretched link so it stays clickable */
+.card-ig {
   position: relative;
   z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  width: fit-content;
-  padding: 0.15rem 0;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
   color: var(--text-soft);
 }
-.module-ig svg { width: 15px; height: 15px; color: var(--copper); }
-.module-ig:hover { color: var(--copper-bright); }
-
-.module-cta {
-  margin-top: auto;
-  padding-top: 0.35rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--copper);
-  transition: color 0.25s ease;
-}
-
-.module:hover .module-card { border-color: var(--copper-dim); }
-.module:hover .module-led,
-.module.is-firing .module-led {
-  background: var(--signal);
-  box-shadow: 0 0 8px var(--signal-glow);
-}
-.module:hover .module-trace {
-  background: var(--copper);
-  box-shadow: 0 0 6px rgba(232, 150, 74, 0.5);
-}
-.module:hover .module-cta { color: var(--copper-bright); }
-
-/* click: a pulse runs down the stub, then the page changes (script.js) */
-.module.is-firing .module-pulse { animation: pulse-travel 0.38s ease-in forwards; }
-.module.is-firing .module-trace {
-  background: var(--signal);
-  box-shadow: 0 0 8px var(--signal-glow);
-}
-.module.is-firing .module-card {
-  border-color: var(--signal);
-  box-shadow: 0 0 0 1px var(--signal), 0 0 28px -6px var(--signal-glow);
-}
-.board.is-firing .board-bus::before,
-.board.is-firing .board-bus::after {
-  background: var(--signal);
-  box-shadow: 0 0 8px var(--signal-glow);
-}
-
-@keyframes pulse-travel {
-  from { opacity: 1; transform: translateY(0); }
-  to   { opacity: 1; transform: translateY(var(--stub)); }
-}
-@keyframes pulse-travel-x {
-  from { opacity: 1; transform: translateX(0); }
-  to   { opacity: 1; transform: translateX(var(--stub)); }
-}
+.card-ig svg { width: 15px; height: 15px; color: var(--copper); }
+.card-ig:hover { color: var(--copper-bright); }
 
 /* ===========================================================
    Links inside body text — underline trace draws in
@@ -1177,77 +1010,6 @@ main p a:not(.btn):hover { background-size: 100% 1px; }
    Responsive
    =========================================================== */
 
-/* board turns on its side: MCU top-left, vertical bus, full-width module rows */
-@media (max-width: 999px) {
-  .board {
-    --rail: 14px;
-    --stub: 26px;
-    padding: 1.5rem 1.25rem;
-  }
-  .board-mcu { margin: 0; }
-  .board-bus { height: 24px; }
-  .board-bus::before { left: var(--rail); }
-  .board-bus::after { display: none; }
-
-  .board-modules {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-    padding-left: calc(var(--rail) + var(--stub));
-  }
-
-  /* each row carries its own segment of the vertical bus */
-  .module::before {
-    content: "";
-    position: absolute;
-    left: calc(-1 * var(--stub) - 1px);
-    top: -0.75rem;
-    bottom: 0;
-    width: 2px;
-    background: var(--copper-dim);
-    transition: background 0.2s ease, box-shadow 0.2s ease;
-  }
-  .module:first-child::before { top: 0; }
-  .module:last-child::before { bottom: 50%; }
-  .board.is-firing .module::before {
-    background: var(--signal);
-    box-shadow: 0 0 8px var(--signal-glow);
-  }
-
-  .module-trace {
-    position: absolute;
-    left: calc(-1 * var(--stub));
-    top: 50%;
-    width: var(--stub);
-    height: 2px;
-    margin-top: -1px;
-  }
-  .module-trace::before { left: -2px; top: -2px; margin-left: 0; }
-  .module-pulse { left: 0; top: 50%; }
-  .module.is-firing .module-pulse { animation-name: pulse-travel-x; }
-
-  .module-card {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    column-gap: 1rem;
-    row-gap: 0.2rem;
-    align-items: center;
-    min-height: 84px;
-    padding: 0.95rem 1.1rem;
-  }
-  .module-name { grid-column: 1; grid-row: 1; }
-  .module-tag { grid-column: 1; grid-row: 2; }
-  .module-ig { grid-column: 1; grid-row: 3; }
-  .module-top { grid-column: 2; grid-row: 1; justify-content: flex-end; gap: 0.6rem; }
-  .module-cta {
-    grid-column: 2;
-    grid-row: 2 / span 2;
-    justify-self: end;
-    align-self: end;
-    margin-top: 0;
-    padding-top: 0;
-  }
-}
-
 @media (max-width: 860px) {
   .nav { flex-wrap: wrap; gap: 0.5rem 1.1rem; padding: 0.5rem 0; }
 
@@ -1278,13 +1040,13 @@ main p a:not(.btn):hover { background-size: 100% 1px; }
   .log-entry { grid-template-columns: 1fr; row-gap: 0.35rem; }
   .project-card { padding: 1.75rem 1.5rem; }
   .project-card::before { left: 1.5rem; }
+  .interest-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 560px) {
   .gallery { grid-template-columns: 1fr; }
   .gallery-item-feature { aspect-ratio: 3 / 2; }
   .gallery-item-tall { grid-row: auto; aspect-ratio: 2 / 3; }
-  .cta-text { display: none; }
   .module-nav { grid-template-columns: 1fr; }
   .module-nav .module-nav-next { grid-column: 1; }
   .lightbox { grid-template-columns: 1fr; padding: 4rem 0.75rem 5rem; }
