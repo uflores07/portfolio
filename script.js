@@ -500,7 +500,8 @@
       budget: ['Student Budget Tracker', 'projects.html#budget-tracker'],
       dice: ['Electronic Dice', 'projects.html#electronic-dice'],
       cook: ['Commercial Cook, Green Tee Country Club', 'experience.html#commercial-cook'],
-      landscaper: ['Landscaper, Koru Landscaping', 'experience.html#landscaper']
+      landscaper: ['Landscaper, Koru Landscaping', 'experience.html#landscaper'],
+      ensc252: ['ENSC 252, Simon Fraser University', 'about.html#education']
     };
     var chips = Array.prototype.slice.call(skillBoard.querySelectorAll('.skill-chip'));
     var readout = document.querySelector('.skill-readout');
