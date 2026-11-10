@@ -490,4 +490,75 @@
 
     start();
   }
+
+  /* ---------- Skills board: select a skill, filter by experience ---------- */
+  var skillBoard = document.querySelector('.skill-board');
+  if (skillBoard) {
+    var SOURCES = {
+      soccer: ['Firmware Developer, SFU Robot Soccer', 'experience.html#robot-soccer'],
+      cup: ['Automated Measuring Cup', 'projects.html#measuring-cup'],
+      budget: ['Student Budget Tracker', 'projects.html#budget-tracker'],
+      dice: ['Electronic Dice', 'projects.html#electronic-dice'],
+      cook: ['Commercial Cook, Green Tee Country Club', 'experience.html#commercial-cook'],
+      landscaper: ['Landscaper, Koru Landscaping', 'experience.html#landscaper']
+    };
+    var chips = Array.prototype.slice.call(skillBoard.querySelectorAll('.skill-chip'));
+    var readout = document.querySelector('.skill-readout');
+    var filter = document.querySelector('.skill-filter');
+    var rName = readout.querySelector('.readout-name');
+    var rGroup = readout.querySelector('.readout-group');
+    var rNote = readout.querySelector('.readout-note');
+    var rLinks = readout.querySelector('.readout-links');
+
+    var selectSkill = function (chip) {
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+      var group = chip.closest('.skill-group').querySelector('.skill-group-head');
+      rName.textContent = chip.textContent;
+      rGroup.textContent = group.querySelector('.skill-ref').textContent + ' / ' +
+        group.lastChild.textContent.trim();
+      rNote.textContent = chip.getAttribute('data-note') || '';
+      rLinks.textContent = '';
+      readout.querySelector('.readout-label').hidden = false;
+      var srcs = (chip.getAttribute('data-src') || '').split(' ').filter(Boolean);
+      if (!srcs.length) {
+        readout.querySelector('.readout-label').hidden = true;
+      }
+      srcs.forEach(function (key) {
+        var s = SOURCES[key];
+        if (!s) return;
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = s[1];
+        a.textContent = s[0] + ' →';
+        li.appendChild(a);
+        rLinks.appendChild(li);
+      });
+    };
+
+    chips.forEach(function (chip) {
+      chip.setAttribute('aria-pressed', 'false');
+      chip.addEventListener('click', function () { selectSkill(chip); });
+    });
+
+    var buttons = Array.prototype.slice.call(filter.querySelectorAll('button'));
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var key = btn.getAttribute('data-src');
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+        var firstMatch = null;
+        chips.forEach(function (c) {
+          var srcs = (c.getAttribute('data-src') || '').split(' ');
+          var match = key === 'all' || srcs.indexOf(key) !== -1;
+          c.classList.toggle('is-dim', !match);
+          c.classList.toggle('is-match', key !== 'all' && match);
+          if (match && !firstMatch) firstMatch = c;
+        });
+        if (firstMatch) selectSkill(firstMatch);
+      });
+    });
+
+    filter.hidden = false;
+    readout.hidden = false;
+    selectSkill(chips[0]);
+  }
 })();

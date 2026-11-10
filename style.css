@@ -118,8 +118,8 @@ a:hover { color: var(--copper-bright); }
 .wordmark {
   position: relative;
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1083,4 +1083,214 @@ main p a:not(.btn):hover { background-size: 100% 1px; }
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
   }
+}
+
+/* Screen-reader-only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Deep-link targets clear the sticky header */
+.project-card[id],
+.log-entry[id] { scroll-margin-top: calc(var(--header-h) + 1.5rem); }
+
+/* "Currently" block on the homepage */
+.now { margin-bottom: 3.5rem; }
+.now-card { border-color: var(--copper-dim); }
+.status-live { color: var(--copper-bright); }
+.status-live::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: live-blink 1.6s ease-in-out infinite;
+}
+@keyframes live-blink { 50% { opacity: 0.25; } }
+@media (prefers-reduced-motion: reduce) { .status-live::before { animation: none; } }
+
+/* Related links at the bottom of an interest page */
+.interest-related { padding-top: 0; }
+.interest-related ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+.interest-related a { font-family: var(--font-mono); font-size: 0.9rem; }
+
+/* ===========================================================
+   Skills board
+   =========================================================== */
+.skill-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.skill-filter[hidden] { display: none; }
+.skill-filter-label {
+  margin-right: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+.skill-filter button {
+  min-height: 40px;
+  padding: 0.4rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.skill-filter button:hover { color: var(--text); border-color: var(--copper); }
+.skill-filter button[aria-pressed="true"] {
+  color: #14100b;
+  background: var(--copper);
+  border-color: var(--copper);
+}
+
+.skill-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  align-items: start;
+}
+.skill-board { display: grid; gap: 1.25rem; }
+
+.skill-group {
+  position: relative;
+  padding: 1.25rem 1.4rem 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+.skill-group::before {
+  content: "";
+  position: absolute;
+  left: 1.4rem;
+  right: 1.4rem;
+  top: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--copper), transparent);
+}
+.skill-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+}
+.skill-ref {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--copper);
+}
+
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0.45rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  color: var(--text-soft);
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  cursor: default;
+  transition: color .2s, border-color .2s, opacity .25s, transform .2s;
+}
+.skill-chip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  transition: background .2s, box-shadow .2s;
+}
+.js .skill-chip { cursor: pointer; }
+.js .skill-chip:hover { color: var(--text); border-color: var(--copper); transform: translateY(-1px); }
+.js .skill-chip:hover::before { background: var(--copper); }
+.skill-chip[aria-pressed="true"] {
+  color: var(--text);
+  border-color: var(--copper-bright);
+  background: rgba(232, 150, 74, 0.1);
+}
+.skill-chip[aria-pressed="true"]::before { background: var(--signal); box-shadow: 0 0 8px var(--signal-glow); }
+.skill-chip.is-match { border-color: var(--copper); color: var(--text); }
+.skill-chip.is-match::before { background: var(--copper); }
+.skill-chip.is-dim { opacity: 0.3; }
+
+.skill-readout {
+  position: sticky;
+  top: calc(var(--header-h) + 1.5rem);
+  padding: 1.25rem 1.4rem;
+  font-family: var(--font-mono);
+  background: var(--bg);
+  border: 1px solid var(--copper-dim);
+  border-radius: 3px;
+  box-shadow: 0 0 0 4px rgba(232, 150, 74, 0.05);
+}
+.skill-readout[hidden] { display: none; }
+.skill-readout p { margin: 0; }
+.readout-prompt { font-size: 0.85rem; color: var(--signal); }
+.readout-prompt strong { color: var(--text); font-weight: 500; }
+.readout-prompt::after {
+  content: "_";
+  margin-left: 2px;
+  color: var(--signal);
+  animation: live-blink 1s steps(1) infinite;
+}
+.readout-group { margin-top: 0.3rem !important; font-size: 0.72rem; color: var(--copper); }
+.readout-note {
+  margin-top: 1rem !important;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+}
+.readout-label {
+  margin-top: 1.1rem !important;
+  padding-top: 0.9rem;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  border-top: 1px dashed var(--line-strong);
+}
+.readout-links { margin: 0.5rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.4rem; }
+.readout-links a, .readout-links span { font-size: 0.85rem; }
+.readout-links span { color: var(--text-dim); }
+
+@media (prefers-reduced-motion: reduce) {
+  .readout-prompt::after { animation: none; }
+  .js .skill-chip:hover { transform: none; }
+}
+
+@media (max-width: 860px) {
+  .skill-layout { grid-template-columns: 1fr; }
+  .skill-readout {
+    top: auto;
+    bottom: 0.75rem;
+    order: 2;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.6);
+  }
+  .readout-note { font-size: 0.88rem; }
 }

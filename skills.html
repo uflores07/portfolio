@@ -45,22 +45,100 @@
   <section class="page-hero">
     <div class="wrap">
       <h1>Skills</h1>
+      <p class="page-intro">I take everything I work on seriously, whether it's firmware
+        running on a robot, a solder joint on a circuit board, or a plate going out during a
+        280-guest banquet. I test my work, check it twice, and don't call something done
+        until it holds up. These are the skills I've built that way, and where I've used
+        each one.</p>
     </div>
   </section>
 
   <section class="skills" data-reveal>
     <div class="wrap">
+      <h2 class="sr-only">Skill list</h2>
 
-      <dl class="spec-table">
-        <div><dt>Languages</dt><dd>C, C++, MATLAB</dd></div>
-        <div><dt>Protocols &amp; hardware</dt><dd>UART, SPI, I2C, CAN, STM32, logic analyzers,
-          oscilloscopes, soldering, PCB assembly</dd></div>
-        <div><dt>Tools</dt><dd>Git, GitLab, SolidWorks, CAD, Microsoft Excel and Office</dd></div>
-        <div><dt>Practices</dt><dd>Unit testing, iterative debugging, code review, rapid
-          prototyping, bench testing, technical documentation</dd></div>
-        <div><dt>Professional</dt><dd>Cross-functional teamwork, technical communication,
-          leadership and training, time management, working under pressure</dd></div>
-      </dl>
+      <div class="skill-filter" role="group" aria-label="Show skills from" hidden>
+        <span class="skill-filter-label">Filter by experience</span>
+        <button type="button" data-src="all" aria-pressed="true">All</button>
+        <button type="button" data-src="soccer" aria-pressed="false">Robot Soccer</button>
+        <button type="button" data-src="cup" aria-pressed="false">Measuring Cup</button>
+        <button type="button" data-src="budget" aria-pressed="false">Budget Tracker</button>
+        <button type="button" data-src="dice" aria-pressed="false">Electronic Dice</button>
+        <button type="button" data-src="cook" aria-pressed="false">Commercial Cook</button>
+        <button type="button" data-src="landscaper" aria-pressed="false">Landscaper</button>
+      </div>
+
+      <div class="skill-layout">
+        <div class="skill-board">
+
+          <div class="skill-group">
+            <h3 class="skill-group-head"><span class="skill-ref">U1</span>Languages</h3>
+            <ul class="skill-chips">
+              <li><button type="button" class="skill-chip" data-src="soccer" data-note="Real-time embedded C firmware on STM32 microcontrollers for autonomous RoboCup robots.">C</button></li>
+              <li><button type="button" class="skill-chip" data-src="budget" data-note="Budget enforcement logic for a command-line app, validated with unit tests.">C++</button></li>
+              <li><button type="button" class="skill-chip" data-src="">MATLAB</button></li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-head"><span class="skill-ref">U2</span>Protocols &amp; hardware</h3>
+            <ul class="skill-chips">
+              <li><button type="button" class="skill-chip" data-src="soccer" data-note="A communication protocol with packet framing and checksum validation over UART and SPI radio links.">UART</button></li>
+              <li><button type="button" class="skill-chip" data-src="soccer" data-note="SPI radio links for robot communication, plus debugging SPI buses during integration testing.">SPI</button></li>
+              <li><button type="button" class="skill-chip" data-src="soccer" data-note="Debugging I2C buses with logic analyzers during integration testing.">I2C</button></li>
+              <li><button type="button" class="skill-chip" data-src="soccer" data-note="Debugging CAN buses during integration testing.">CAN</button></li>
+              <li><button type="button" class="skill-chip" data-src="soccer" data-note="The microcontroller behind the robot firmware, including interrupt-driven timers and PWM motor control.">STM32</button></li>
+              <li><button type="button" class="skill-chip" data-src="soccer" data-note="Tracing bus traffic to find faults during integration testing.">Logic analyzers</button></li>
+              <li><button type="button" class="skill-chip" data-src="soccer" data-note="Checking signals on the robot hardware during integration testing.">Oscilloscopes</button></li>
+              <li><button type="button" class="skill-chip" data-src="dice" data-note="Learned from scratch and hand-soldered a complete board within one week.">Soldering</button></li>
+              <li><button type="button" class="skill-chip" data-src="dice" data-note="Assembled, inspected, and tested a working electronic dice on a printed circuit board.">PCB assembly</button></li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-head"><span class="skill-ref">U3</span>Tools</h3>
+            <ul class="skill-chips">
+              <li><button type="button" class="skill-chip" data-src="soccer" data-note="Version control for the robot firmware, with code reviews and pair programming.">Git</button></li>
+              <li><button type="button" class="skill-chip" data-src="soccer" data-note="Code reviews and documentation for the firmware team.">GitLab</button></li>
+              <li><button type="button" class="skill-chip" data-src="cup" data-note="CAD modeling and stress analysis for a motor-driven dispensing mechanism.">SolidWorks</button></li>
+              <li><button type="button" class="skill-chip" data-src="cup" data-note="Modeling parts for structural integrity and precise component fit.">CAD</button></li>
+              <li><button type="button" class="skill-chip" data-src="">Microsoft Excel and Office</button></li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-head"><span class="skill-ref">U4</span>Practices</h3>
+            <ul class="skill-chips">
+              <li><button type="button" class="skill-chip" data-src="budget" data-note="Validated the core enforcement algorithms so spending was tracked accurately against limits.">Unit testing</button></li>
+              <li><button type="button" class="skill-chip" data-src="budget soccer" data-note="Finding and fixing faults step by step, in C++ logic and on embedded hardware.">Iterative debugging</button></li>
+              <li><button type="button" class="skill-chip" data-src="soccer" data-note="Reviewing firmware changes with the team, alongside pair programming.">Code review</button></li>
+              <li><button type="button" class="skill-chip" data-src="cup" data-note="Designed and built 2 prototypes of a motor-driven dispensing mechanism.">Rapid prototyping</button></li>
+              <li><button type="button" class="skill-chip" data-src="cup" data-note="Iterative bench testing to meet targeted volumetric tolerances.">Bench testing</button></li>
+              <li><button type="button" class="skill-chip" data-src="soccer" data-note="Documenting firmware so the rest of the team can build on it.">Technical documentation</button></li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-head"><span class="skill-ref">U5</span>Professional</h3>
+            <ul class="skill-chips">
+              <li><button type="button" class="skill-chip" data-src="cup budget" data-note="Integrated mechanical, electrical, and software work across 8-member and 5-member teams.">Cross-functional teamwork</button></li>
+              <li><button type="button" class="skill-chip" data-src="soccer cook" data-note="Code reviews and documentation on the firmware team, and constant communication in a busy kitchen.">Technical communication</button></li>
+              <li><button type="button" class="skill-chip" data-src="cup" data-note="Led the mechanical design for an 8-member team.">Leadership and training</button></li>
+              <li><button type="button" class="skill-chip" data-src="cook landscaper" data-note="Keeping high-volume service and site projects on schedule.">Time management</button></li>
+              <li><button type="button" class="skill-chip" data-src="cook" data-note="Banquet and &agrave; la carte service for events of up to 280 guests.">Working under pressure</button></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <aside class="skill-readout" aria-live="polite" hidden>
+          <p class="readout-prompt"><span aria-hidden="true">&gt; probe </span><strong class="readout-name"></strong></p>
+          <p class="readout-group"></p>
+          <p class="readout-note"></p>
+          <p class="readout-label">Where I've used it</p>
+          <ul class="readout-links"></ul>
+        </aside>
+      </div>
     </div>
   </section>
 
