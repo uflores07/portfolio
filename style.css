@@ -1112,10 +1112,8 @@ main p a:not(.btn):hover { background-size: 100% 1px; }
   height: 6px;
   border-radius: 50%;
   background: currentColor;
-  animation: live-blink 1.6s ease-in-out infinite;
 }
 @keyframes live-blink { 50% { opacity: 0.25; } }
-@media (prefers-reduced-motion: reduce) { .status-live::before { animation: none; } }
 
 /* Related links at the bottom of an interest page */
 .interest-related { padding-top: 0; }
